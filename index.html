@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Isabella &middot; Mis XV A&ntilde;os &middot; 06 Febrero 2027</title>
+<meta name="description" content="Isabella Serrano cumple XV a&ntilde;os. S&aacute;bado 6 de febrero de 2027, The Country Club of Winter Haven, Florida.">
+<meta property="og:title" content="Isabella &middot; Mis XV A&ntilde;os">
+<meta property="og:description" content="S&aacute;bado 6 de febrero de 2027 &middot; Winter Haven, Florida">
+<meta property="og:image" content="./og.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Lato:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Lato',sans-serif;font-weight:500;font-size:16px;
+  color:#463C31;background:#FDFBF7;line-height:1.65;overflow-x:hidden;
+}
+:root{
+  --bg:#FDFBF7;
+  --beige:#D4C5B2;
+  --accent:#7D6B53;
+  --dark:#3A3128;
+  --text:#463C31;
+  --line:rgba(125,107,83,0.30);
+  --surface:#FFFFFF;
+  --card:#FFFFFF;
+}
+
+.wrap{
+  max-width:430px;margin:0 auto;position:relative;overflow:clip;z-index:1;
+  background-color:var(--bg);
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><path d='M40 54 C28 46 14 37 14 27 C14 20 19 16 27 16 C32 16 36 19 40 23 C44 19 48 16 53 16 C61 16 66 20 66 27 C66 37 52 46 40 54Z' fill='none' stroke='%23AD9A7E' stroke-opacity='.30' stroke-width='1.2'/></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><path d='M30 40 C21 34 10 27 10 20 C10 14 14 11 20 11 C24 11 27 13 30 17 C33 13 36 11 40 11 C46 11 50 14 50 20 C50 27 39 34 30 40Z' fill='none' stroke='%23AD9A7E' stroke-opacity='.20' stroke-width='1'/></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='110' height='110'><path d='M55 72 C40 63 22 52 22 40 C22 31 28 26 36 26 C42 26 48 29 55 35 C62 29 68 26 74 26 C82 26 88 31 88 40 C88 52 70 63 55 72Z' fill='none' stroke='%23AD9A7E' stroke-opacity='.17' stroke-width='1.3'/></svg>");
+  background-repeat:repeat;
+  background-size:80px 80px, 60px 60px, 110px 110px;
+  background-position:0 0, 40px 35px, 20px 55px;
+}
+
+/* LOADER */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+}
+.ld-name{font-family:'Great Vibes',cursive;font-size:84px;color:var(--dark);display:flex;gap:1px;}
+.ld-name span{opacity:0;display:inline-block;transform:translateY(22px);}
+.ld-tag{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);opacity:0;
+}
+
+/* HERO */
+.hero{position:relative;width:100%;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);}
+.hero-bg{position:absolute;inset:0;background:url('./hero.jpg') center top/cover no-repeat;}
+.hero-veil{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(253,251,247,0) 0%,
+    rgba(253,251,247,0) 38%,
+    rgba(253,251,247,0.62) 58%,
+    rgba(253,251,247,0.95) 78%,
+    #FDFBF7 100%);
+}
+.hero-bottom{position:relative;z-index:3;margin-top:auto;padding:0 28px 62px;text-align:center;}
+.hero-eyebrow{display:none;}
+
+/* FECHA HERO */
+.fecha-sec{padding:32px 26px 10px;text-align:center;}
+.fecha-line{display:flex;align-items:center;justify-content:center;gap:18px;}
+.fecha-line .fl-bar{flex:1;max-width:60px;height:1px;background:linear-gradient(to right,transparent,var(--accent));opacity:.55;}
+.fecha-line .fl-bar.right{background:linear-gradient(to left,transparent,var(--accent));}
+.fecha-txt{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:17px;letter-spacing:6px;text-transform:uppercase;color:var(--dark);
+}
+.hero-name{
+  font-family:'Great Vibes',cursive;font-size:92px;line-height:.95;
+  color:var(--dark);margin-bottom:10px;
+  text-shadow:0 2px 26px rgba(253,251,247,.85);
+  transform:translateY(30px);opacity:0;
+}
+.hero-sub{display:flex;flex-direction:column;align-items:center;gap:4px;transform:translateY(16px);opacity:0;}
+.xv-num{
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:66px;letter-spacing:12px;line-height:1;color:var(--dark);
+  position:relative;display:inline-block;
+}
+.xv-num::after{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:50px;height:1px;background:var(--accent);opacity:.7;}
+.xv-anos{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:19px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-top:12px;
+}
+
+/* ORNAMENTO */
+.orn{display:flex;justify-content:center;padding:4px 0;}
+.orn svg{width:130px;height:30px;}
+
+/* SECCIONES */
+section{padding:60px 24px;}
+.eyebrow{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:14px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--accent);text-align:center;margin-bottom:8px;
+}
+.sec-title{
+  font-family:'Great Vibes',cursive;font-size:50px;
+  color:var(--dark);text-align:center;line-height:1.15;margin-bottom:28px;
+}
+.sec-intro{
+  text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:18px;line-height:1.55;color:var(--text);margin:-14px auto 26px;max-width:340px;
+}
+
+/* COUNTDOWN */
+.cd-row{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.cd-box{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 3px;text-align:center;
+  box-shadow:0 6px 24px rgba(125,107,83,.13);
+}
+.cd-num{
+  font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;
+  color:var(--dark);line-height:1;font-variant-numeric:tabular-nums;
+}
+.cd-lbl{
+  font-family:'Lato',sans-serif;font-weight:600;
+  font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);margin-top:7px;
+}
+
+/* UBICACION */
+.loc-card{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 22px;
+  box-shadow:0 8px 30px rgba(125,107,83,.14);margin-bottom:18px;text-align:center;
+}
+.loc-card .lt{font-family:'Great Vibes',cursive;font-size:38px;color:var(--dark);margin-bottom:6px;}
+.loc-card .ls{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;
+}
+.loc-card p{font-size:16px;margin:4px 0;line-height:1.6;color:var(--text);}
+.loc-card p strong{font-weight:700;color:var(--dark);font-size:17px;}
+.loc-card .lh{
+  font-family:'Lato',sans-serif;font-size:22px;font-weight:700;
+  color:var(--dark);letter-spacing:2px;margin-top:14px;
+}
+.loc-note{
+  font-family:'Lato',sans-serif;font-size:14px;font-weight:500;color:var(--accent);
+  margin-top:6px;line-height:1.5;
+}
+.map-embed{width:100%;height:200px;border:0;border-radius:12px;margin-top:18px;display:block;}
+.btn{
+  display:inline-block;margin-top:16px;padding:14px 30px;min-height:46px;
+  background:#6B5B45;color:#FFFFFF;border-radius:30px;
+  font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:2px;text-decoration:none;
+  transition:background .3s,transform .3s;border:none;cursor:pointer;
+}
+.btn:hover{background:#584A38;transform:translateY(-2px);}
+
+/* CALENDAR */
+.cal-c{text-align:center;}
+.cal-c p{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;color:var(--text);margin-bottom:18px;}
+
+/* ITINERARIO */
+.tl{position:relative;display:grid;grid-template-columns:1fr 28px 1fr;row-gap:0;align-items:start;}
+.tl::before{
+  content:'';position:absolute;top:10px;bottom:10px;left:50%;transform:translateX(-50%);
+  width:1px;background:linear-gradient(to bottom,transparent,var(--accent) 15%,var(--accent) 85%,transparent);
+  opacity:.4;z-index:0;
+}
+.ti{display:contents;}
+.ti-left{text-align:right;padding:14px 18px 14px 0;}
+.ti-center{display:flex;align-items:flex-start;justify-content:center;padding-top:18px;position:relative;z-index:1;}
+.ti-dot{width:13px;height:13px;flex-shrink:0;border-radius:50%;background:var(--bg);border:2.5px solid var(--accent);}
+.ti-right{text-align:left;padding:14px 0 14px 18px;}
+.ti-content{display:flex;flex-direction:column;}
+.ti-time{font-family:'Lato',sans-serif;font-size:22px;font-weight:700;color:var(--dark);letter-spacing:1px;line-height:1.1;}
+.ti-ev{font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:.6px;color:var(--accent);margin-top:5px;line-height:1.45;}
+.ti-row-left .ti-left{grid-column:1;}
+.ti-row-left .ti-center{grid-column:2;}
+.ti-row-left .ti-right{grid-column:3;visibility:hidden;}
+.ti-row-right .ti-left{grid-column:1;visibility:hidden;}
+.ti-row-right .ti-center{grid-column:2;}
+.ti-row-right .ti-right{grid-column:3;}
+
+/* DRESS CODE */
+.dc-note{
+  text-align:center;font-family:'Lato',sans-serif;font-weight:700;
+  font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);margin-bottom:10px;
+}
+.dc-sub{
+  text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;
+  color:var(--text);line-height:1.55;margin:0 auto 26px;max-width:330px;
+}
+.swatches{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.sw{text-align:center;}
+.sw .dot{width:66px;height:66px;border-radius:50%;margin:0 auto 10px;box-shadow:0 8px 22px rgba(125,107,83,.22);border:1px solid var(--line);}
+.sw .lbl{font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);}
+
+/* FAMILIA */
+.fam{display:flex;flex-direction:column;gap:26px;align-items:center;text-align:center;}
+.fam-g .role{
+  font-family:'Lato',sans-serif;font-weight:600;
+  font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;
+}
+.fam-g .names{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:var(--dark);line-height:1.6;}
+.amp{font-style:italic;font-size:17px;color:var(--accent);}
+.flor{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--beige);letter-spacing:10px;}
+
+/* CROSSFADE GALERIA */
+#sgal{padding:0;height:300vh;}
+.cf-frame{position:sticky;top:0;width:100%;height:100dvh;overflow:hidden;background:var(--bg);}
+.cf-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;will-change:opacity;}
+.cf-fade-top{position:absolute;top:0;left:0;right:0;height:20%;z-index:2;background:linear-gradient(to bottom,#FDFBF7 0%,rgba(253,251,247,.6) 50%,transparent 100%);pointer-events:none;}
+.cf-fade-bot{position:absolute;bottom:0;left:0;right:0;height:20%;z-index:2;background:linear-gradient(to top,#FDFBF7 0%,rgba(253,251,247,.6) 50%,transparent 100%);pointer-events:none;}
+
+/* MESA DE REGALOS */
+.gift-grid{display:flex;flex-direction:column;gap:16px;}
+.gift-card{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;
+  box-shadow:0 8px 30px rgba(125,107,83,.14);
+  display:flex;align-items:center;gap:18px;
+}
+.gift-logo-wrap{width:64px;height:64px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#EFE7DB;border:1px solid var(--line);}
+.gift-body{flex:1;min-width:0;}
+.gift-body .gb-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;color:var(--dark);margin-bottom:3px;}
+.gift-body .gb-desc{font-family:'Lato',sans-serif;font-size:15px;font-weight:500;color:var(--text);line-height:1.55;}
+
+/* RSVP */
+.rsvp-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 20px;box-shadow:0 8px 30px rgba(125,107,83,.14);}
+.rsvp-hola{text-align:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.pases-wrap{display:none;margin:10px 0 18px;}
+.pases-card{background:#F7F1E8;border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center;}
+.pases-title{font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
+.pases-sub{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;color:var(--text);margin-top:2px;}
+.pases-circles{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0 8px;}
+.pases-circle{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--accent);}
+.pases-circle.active{background:#6B5B45;border-color:#6B5B45;}
+.pases-honor{font-family:'Lato',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);}
+.rsvp-card label{display:block;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:16px 0 8px;}
+.rsvp-card label:first-of-type{margin-top:0;}
+.rsvp-toggle{display:flex;gap:10px;margin:4px 0;}
+.rsvp-toggle-btn{
+  flex:1;padding:14px 8px;min-height:48px;border:1.5px solid var(--line);background:#FFFFFF;
+  border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--text);transition:all .25s;
+}
+.rsvp-toggle-btn.on{background:#6B5B45;border-color:#6B5B45;color:#FFFFFF;box-shadow:0 6px 16px rgba(107,91,69,.28);}
+.rsvp-toggle-btn:disabled{opacity:.5;cursor:not-allowed;}
+.rsvp-fields{margin-top:12px;}
+.rsvp-fields input{
+  width:100%;padding:14px;min-height:48px;margin-bottom:9px;
+  border:1.5px solid var(--line);border-radius:10px;background:#FFFFFF;
+  font-family:'Lato',sans-serif;font-size:16px;font-weight:500;color:#3A3128;outline:none;
+  transition:border-color .3s;-webkit-appearance:none;
+}
+.rsvp-fields input::placeholder{color:rgba(70,60,49,.55);}
+.rsvp-fields input:focus{border-color:#6B5B45;}
+.rsvp-feedback{text-align:center;font-family:'Lato',sans-serif;font-size:15px;font-weight:600;line-height:1.5;margin-top:14px;}
+.rsvp-gracias{padding:20px 10px 8px;text-align:center;}
+.rsvp-gracias-icon{color:#6B5B45;margin:0 auto 10px;display:block;}
+.rsvp-gracias-title{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.35;}
+.rsvp-gracias-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text);line-height:1.6;margin-bottom:18px;}
+.rsvp-editar-btn{padding:13px 24px;min-height:46px;border:1.5px solid #6B5B45;background:transparent;cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:#6B5B45;border-radius:24px;transition:all .25s;}
+.rsvp-editar-btn:disabled{opacity:.45;cursor:not-allowed;}
+.rsvp-deadline{text-align:center;font-family:'Lato',sans-serif;font-size:14px;font-weight:500;color:var(--accent);margin-top:16px;line-height:1.5;}
+.btn-wa{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;margin-top:20px;padding:16px;min-height:52px;
+  background:#6B5B45;color:#fff;border-radius:30px;border:none;cursor:pointer;
+  font-family:'Lato',sans-serif;font-size:14px;font-weight:700;
+  text-transform:uppercase;letter-spacing:2px;transition:background .3s,transform .3s;
+}
+.btn-wa:hover{background:#584A38;transform:translateY(-2px);}
+.btn-wa:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+/* FOOTER */
+footer{padding:48px 20px 92px;text-align:center;}
+footer .fn{font-family:'Great Vibes',cursive;font-size:52px;color:var(--dark);}
+footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-top:6px;}
+footer .fc{font-family:'Lato',sans-serif;font-size:13px;font-weight:500;letter-spacing:1px;color:var(--accent);margin-top:22px;padding:0 24px;line-height:1.6;}
+footer .fc a{color:var(--accent);text-decoration:none;}
+
+/* MUSICA FAB */
+.music-fab{
+  position:fixed;bottom:24px;right:24px;z-index:998;
+  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+  background:#6B5B45;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(107,91,69,.45);animation:fabpulse 2.8s infinite ease-out;
+}
+@keyframes fabpulse{
+  0%{box-shadow:0 0 0 0 rgba(107,91,69,.5);}
+  70%{box-shadow:0 0 0 18px rgba(107,91,69,0);}
+  100%{box-shadow:0 0 0 0 rgba(107,91,69,0);}
+}
+.music-fab.is-playing{background:#463C31;}
+.music-fab svg{width:24px;height:24px;}
+
+/* ENVELOPE */
+#envelope-screen{position:fixed;inset:0;z-index:10000;overflow:hidden;cursor:pointer;opacity:0;background:#FDFBF7;}
+#env-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:2;}
+#env-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:3;opacity:0;}
+#env-flash{position:fixed;inset:0;background:#FDFBF7;z-index:9999;opacity:0;pointer-events:none;}
+.envelope-hint{
+  position:absolute;bottom:48px;left:50%;transform:translateX(-50%);
+  font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:#3A3128;opacity:0;cursor:pointer;white-space:nowrap;z-index:10;
+  background:rgba(253,251,247,0.92);border:1px solid rgba(125,107,83,0.5);
+  padding:11px 22px;border-radius:30px;
+}
+.envelope-hint::after{content:none;}
+#loader{display:none;}
+</style>
+</head>
+<body>
+
+<!-- ENVELOPE -->
+<div id="envelope-screen" role="button" aria-label="Toca para abrir tu invitacion">
+  <img id="env-image" src="./sobre.png" alt="Invitacion de Isabella">
+  <video id="env-video" src="./sobre-apertura.mp4" playsinline webkit-playsinline muted preload="auto"></video>
+  <p class="envelope-hint" id="env-hint">Toca para abrir</p>
+</div>
+<div id="env-flash"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-name" id="ldName"></div>
+  <div class="ld-tag" id="ldTag">Mis XV A&ntilde;os &middot; 06 Febrero 2027</div>
+</div>
+
+
+<div class="wrap" style="visibility:hidden">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-bg"></div>
+    <div class="hero-veil"></div>
+    <div class="hero-bottom">
+      <h1 class="hero-name" id="hNm">Isabella</h1>
+      <div class="hero-sub" id="hSb">
+        <span class="xv-num">XV</span>
+        <span class="xv-anos">A&ntilde;os</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+    </svg></div>
+
+  <!-- FECHA -->
+  <div class="fecha-sec rv">
+    <div class="fecha-line">
+      <div class="fl-bar"></div>
+      <div class="fecha-txt">06 &middot; Febrero &middot; MMXXVII</div>
+      <div class="fl-bar right"></div>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <section id="scd" class="rv">
+    <h2 class="sec-title">Cuenta Regresiva</h2>
+    <p class="sec-intro">S&aacute;bado 6 de febrero de 2027 &middot; Winter Haven, Florida</p>
+    <div class="cd-row">
+      <div class="cd-box"><div class="cd-num" id="cdD">000</div><div class="cd-lbl">D&iacute;as</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">Horas</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">Minutos</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl">Segundos</div></div>
+    </div>
+  </section>
+
+  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+    </svg></div>
+
+  <!-- UBICACION -->
+  <section id="subic">
+    <h2 class="sec-title rv">Ubicaci&oacute;n</h2>
+
+    <div class="loc-card rv" id="lc1">
+      <div class="lt">Recepci&oacute;n</div>
+      <div class="ls">Cena, Vals y Fiesta</div>
+      <p><strong>The Country Club of Winter Haven</strong></p>
+      <p>4200 Country Club Rd</p>
+      <p>Winter Haven, FL 33881</p>
+      <div class="lh">5:00 PM</div>
+      <p class="loc-note">Te pedimos llegar 15 minutos antes.<br>Estacionamiento disponible en el club.</p>
+      <a class="btn" href="https://maps.app.goo.gl/qyqjjEqXdTh2CZdv7" target="_blank" rel="noopener">C&oacute;mo Llegar</a>
+      <iframe
+        class="map-embed"
+        src="https://maps.google.com/maps?q=The+Country+Club+of+Winter+Haven,+4200+Country+Club+Rd,+Winter+Haven,+FL+33881&output=embed&hl=es"
+        allowfullscreen
+        loading="lazy"
+        title="Mapa de The Country Club of Winter Haven"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="rv cal-c" id="scal">
+    <div class="eyebrow">No lo olvides</div>
+    <h2 class="sec-title">Gu&aacute;rdalo</h2>
+    <p>Agrega el evento a tu calendario</p>
+    <a class="btn" id="gcalBtn" href="#" target="_blank" rel="noopener">A&ntilde;adir a Google Calendar</a>
+  </section>
+
+  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+    </svg></div>
+
+  <!-- ITINERARIO -->
+  <section id="siti">
+    <div class="eyebrow rv">Programa del D&iacute;a</div>
+    <h2 class="sec-title rv">Itinerario</h2>
+
+    <div class="tl">
+
+      <div class="ti ti-row-left">
+        <div class="ti-left"><div class="ti-content"><div class="ti-time">5:00 PM</div><div class="ti-ev">Recepci&oacute;n de invitados</div></div></div>
+        <div class="ti-center"><div class="ti-dot"></div></div>
+        <div class="ti-right"></div>
+      </div>
+
+      <div class="ti ti-row-right">
+        <div class="ti-left"></div>
+        <div class="ti-center"><div class="ti-dot"></div></div>
+        <div class="ti-right"><div class="ti-content"><div class="ti-time">5:45 PM</div><div class="ti-ev">Entrada de Isabella</div></div></div>
+      </div>
+
+      <div class="ti ti-row-left">
+        <div class="ti-left"><div class="ti-content"><div class="ti-time">6:15 PM</div><div class="ti-ev">Vals de honor</div></div></div>
+        <div class="ti-center"><div class="ti-dot"></div></div>
+        <div class="ti-right"></div>
+      </div>
+
+      <div class="ti ti-row-right">
+        <div class="ti-left"></div>
+        <div class="ti-center"><div class="ti-dot"></div></div>
+        <div class="ti-right"><div class="ti-content"><div class="ti-time">7:00 PM</div><div class="ti-ev">Cena y brindis</div></div></div>
+      </div>
+
+      <div class="ti ti-row-left">
+        <div class="ti-left"><div class="ti-content"><div class="ti-time">8:30 PM</div><div class="ti-ev">Fiesta y sorpresas</div></div></div>
+        <div class="ti-center"><div class="ti-dot"></div></div>
+        <div class="ti-right"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+    </svg></div>
+
+  <!-- DRESS CODE -->
+  <section class="rv" id="sdc">
+    <div class="eyebrow">Etiqueta</div>
+    <h2 class="sec-title">Dress Code</h2>
+    <div class="dc-note">Semi Formal</div>
+    <p class="dc-sub">La paleta de la noche es <strong>blanco, marfil y beige</strong>. Nos encantar&iacute;a verte en estos tonos.</p>
+    <div class="swatches" id="swatches">
+      <div class="sw"><div class="dot" style="background:#FFFFFF;"></div><div class="lbl">Blanco</div></div>
+      <div class="sw"><div class="dot" style="background:#F6F0E4;"></div><div class="lbl">Marfil</div></div>
+      <div class="sw"><div class="dot" style="background:#D4C5B2;"></div><div class="lbl">Beige</div></div>
+    </div>
+  </section>
+
+  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+    </svg></div>
+
+  <!-- FAMILIA -->
+  <section id="sfam">
+    <div class="eyebrow rv">Con la Bendici&oacute;n de</div>
+    <h2 class="sec-title rv">Mi Familia</h2>
+    <div class="fam">
+      <div class="fam-g rv">
+        <div class="role">Mis Padres</div>
+        <div class="names">Louiyi Serrano<br><span class="amp">&amp;</span><br>Marynid Serrano</div>
+      </div>
+      <div class="flor rv">&#10086; &#10086; &#10086;</div>
+      <div class="fam-g rv">
+        <div class="role">Mis Padrinos</div>
+        <div class="names">Por confirmar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSSFADE GALERIA -->
+  <section id="sgal">
+    <div class="cf-frame">
+      <img class="cf-img" id="cfImg1" src="./foto1.jpg" alt="Isabella">
+      <img class="cf-img" id="cfImg2" src="./foto2.jpg" alt="Isabella">
+      <img class="cf-img" id="cfImg3" src="./foto3.jpg" alt="Isabella">
+      <img class="cf-img" id="cfImg4" src="./foto4.jpg" alt="Isabella">
+      <img class="cf-img" id="cfImg5" src="./foto5.jpg" alt="Isabella">
+      <div class="cf-fade-top"></div>
+      <div class="cf-fade-bot"></div>
+    </div>
+  </section>
+
+  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+    </svg></div>
+
+  <!-- MESA DE REGALOS -->
+  <section class="rv" id="sgifts">
+    <div class="eyebrow">Con Cari&ntilde;o</div>
+    <h2 class="sec-title">Mesa de Regalos</h2>
+    <div class="gift-grid">
+
+      <div class="gift-card rv">
+        <div class="gift-logo-wrap">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7D6B53" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        </div>
+        <div class="gift-body">
+          <div class="gb-name">Lluvia de Sobres</div>
+          <div class="gb-desc">Tu presencia es el mejor regalo. Si deseas obsequiarle algo a Isabella, habr&aacute; un buz&oacute;n de sobres en la recepci&oacute;n.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+    </svg></div>
+
+  <!-- RSVP -->
+  <section class="rv" id="srsvp">
+    <div class="eyebrow">Confirma tu Asistencia</div>
+    <h2 class="sec-title">R.S.V.P.</h2>
+    <div class="rsvp-card">
+      <p class="rsvp-hola" id="rsvpHola"></p>
+
+      <div class="pases-wrap" id="pasesWrap">
+        <div class="pases-card">
+          <div class="pases-title">Pases</div>
+          <div class="pases-sub">Hemos reservado</div>
+          <div class="pases-circles" id="pasesCircles"></div>
+          <div class="pases-honor">Asientos en tu honor</div>
+        </div>
+      </div>
+
+      <div id="rsvpBandeja">
+        <label>&iquest;Nos acompa&ntilde;ar&aacute;s?</label>
+        <div class="rsvp-toggle">
+          <button class="rsvp-toggle-btn" id="btnYes" type="button">S&iacute;, asistir&eacute;</button>
+          <button class="rsvp-toggle-btn" id="btnNo" type="button">No podr&eacute; asistir</button>
+        </div>
+        <div class="rsvp-fields" id="rsvpFields" style="display:none"></div>
+        <button class="btn-wa" id="rsvpBtn" type="button"><span id="rsvpBtnText">Confirmar asistencia</span></button>
+      </div>
+
+      <div class="rsvp-gracias" id="rsvpGracias" style="display:none">
+        <svg class="rsvp-gracias-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
+        <p class="rsvp-gracias-title" id="rsvpGraciasTitle"></p>
+        <p class="rsvp-gracias-sub" id="rsvpGraciasSub"></p>
+        <button class="rsvp-editar-btn" id="rsvpEditarBtn" type="button">Modificar mi respuesta</button>
+      </div>
+
+      <p class="rsvp-feedback" id="rsvpFeedback"></p>
+      <p class="rsvp-deadline">Fecha l&iacute;mite para confirmar:<br><strong>30 de noviembre de 2026</strong></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fn">Isabella</div>
+    <div class="fd">06 &middot; Febrero &middot; MMXXVII</div>
+    <div class="fc">Invitaci&oacute;n creada por <a href="https://instagram.com/elysium.invitaciones" target="_blank" rel="noopener">@elysium.invitaciones</a></div>
+  </footer>
+
+</div>
+
+<!-- MUSICA -->
+<button class="music-fab" id="musicFab" aria-label="Reproducir musica">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+</button>
+<audio id="bgAudio" loop preload="none" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-isabella-serrano/cancion.mp3"></audio>
+
+<script>
+window.scrollTo(0,0);
+history.scrollRestoration='manual';
+gsap.registerPlugin(ScrollTrigger);
+
+(function () {
+  var envScreen = document.getElementById('envelope-screen');
+  var envImage  = document.getElementById('env-image');
+  var envVideo  = document.getElementById('env-video');
+  var envFlash  = document.getElementById('env-flash');
+  var hint      = document.getElementById('env-hint');
+  var opened    = false;
+
+  gsap.timeline()
+    .to(envScreen, { opacity:1, duration:1.2, ease:'power2.out', delay:0.3 })
+    .to(hint,      { opacity:1, duration:0.9, ease:'power2.out' }, '-=0.5');
+
+  var flashStarted    = false;
+  var invitationReady = false;
+
+  function prepareInvitation() {
+    if (invitationReady) return;
+    invitationReady = true;
+    envScreen.style.display = 'none';
+    document.querySelector('.wrap').style.visibility = 'visible';
+    launchPage();
+  }
+
+  function revealInvitation() {
+    prepareInvitation();
+    gsap.to(envFlash, {
+      opacity:0, duration:1.2, ease:'power2.out',
+      onComplete: function(){ envFlash.style.display='none'; }
+    });
+  }
+
+  envVideo.addEventListener('timeupdate', function () {
+    if (!flashStarted && envVideo.duration && envVideo.currentTime >= envVideo.duration - 2) {
+      flashStarted = true;
+      gsap.to(envFlash, { opacity:1, duration:1, ease:'power2.in', onComplete: revealInvitation });
+    }
+  });
+
+  envVideo.addEventListener('ended', function () {
+    gsap.set(envFlash, { opacity:1 });
+    revealInvitation();
+  });
+
+  function openEnvelope() {
+    if (opened) return;
+    opened = true;
+    gsap.killTweensOf(envImage);
+    gsap.to(hint, { opacity:0, duration:0.2 });
+    var playPromise = envVideo.play();
+    gsap.to(envImage, {
+      opacity:0, duration:0.55, ease:'power2.inOut',
+      onComplete: function(){ envImage.style.display='none'; }
+    });
+    gsap.to(envVideo, { opacity:1, duration:0.55, ease:'power2.inOut' });
+    if (playPromise !== undefined) {
+      playPromise.catch(function(){ revealInvitation(); });
+    }
+  }
+
+  envScreen.addEventListener('click', openEnvelope);
+  envScreen.addEventListener('touchstart', function(e){
+    e.preventDefault(); openEnvelope();
+  }, { passive:false });
+}());
+
+function startLoader(){
+  var c = document.getElementById('ldName');
+  'Isabella'.split('').forEach(function(ch){var s=document.createElement('span');s.textContent=ch;c.appendChild(s);});
+  gsap.timeline({ onComplete: launchPage })
+    .to(c.querySelectorAll('span'),{opacity:1,y:0,duration:.7,stagger:.14,ease:'power3.out'})
+    .to('#ldTag',{opacity:1,duration:1,ease:'power2.out'},'-=.2')
+    .to('#loader',{opacity:0,duration:1.3,ease:'power2.inOut',delay:.5,
+        onComplete:function(){document.getElementById('loader').remove();}});
+}
+
+function launchPage(){
+  gsap.timeline({defaults:{ease:'power2.out'}})
+    .to('#hNm',{opacity:1,y:0,duration:1.8,ease:'power3.out'})
+    .to('#hSb',{opacity:1,y:0,duration:1.4},'-=1');
+  initScrollReveal();
+  initItinerary();
+  initCrossfade();
+  initDressCode();
+}
+
+function initScrollReveal(){
+  document.querySelectorAll('.rv').forEach(function(el){
+    gsap.fromTo(el,
+      {y:36,opacity:0},
+      {y:0,opacity:1,duration:1.3,ease:'power2.out',immediateRender:false,
+       scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+}
+
+function initItinerary(){
+  document.querySelectorAll('.ti').forEach(function(row,i){
+    var side = row.classList.contains('ti-row-left') ? '.ti-left' : '.ti-right';
+    var content = row.querySelector(side);
+    var dot = row.querySelector('.ti-dot');
+    var fromX = row.classList.contains('ti-row-left') ? -30 : 30;
+    gsap.fromTo([content,dot],
+      {x:fromX,opacity:0},
+      {x:0,opacity:1,duration:1.1,stagger:.08,ease:'power2.out',delay:i*.18,immediateRender:false,
+       scrollTrigger:{trigger:'#siti',start:'top 78%'}});
+  });
+}
+
+function initDressCode(){
+  ScrollTrigger.create({trigger:'#sdc',start:'top 82%',once:true,
+    onEnter:function(){gsap.fromTo('#swatches .dot',{scale:0,opacity:0},{scale:1,opacity:1,duration:.9,stagger:.18,ease:'back.out(2)'});}});
+}
+
+function initCrossfade(){
+  gsap.set('#cfImg2,#cfImg3,#cfImg4,#cfImg5',{opacity:0});
+  var breaks=[0.10,0.32,0.54,0.76];
+  var T=0.14;
+  var cl=gsap.utils.clamp;
+  ScrollTrigger.create({
+    trigger:'#sgal',
+    start:'top top',
+    end:'bottom bottom',
+    scrub:1,
+    onUpdate:function(self){
+      var p=self.progress;
+      var f=function(s){return cl(0,1,(p-s)/T);};
+      gsap.set('#cfImg1',{opacity:1-f(breaks[0])});
+      gsap.set('#cfImg2',{opacity:Math.min(f(breaks[0]),1-f(breaks[1]))});
+      gsap.set('#cfImg3',{opacity:Math.min(f(breaks[1]),1-f(breaks[2]))});
+      gsap.set('#cfImg4',{opacity:Math.min(f(breaks[2]),1-f(breaks[3]))});
+      gsap.set('#cfImg5',{opacity:f(breaks[3])});
+    }
+  });
+}
+
+/* COUNTDOWN */
+(function(){
+  var target=new Date('2027-02-06T17:00:00-05:00').getTime();
+  function tick(){
+    var d=target-Date.now();if(d<=0)return;
+    document.getElementById('cdD').textContent=String(Math.floor(d/86400000)).padStart(3,'0');
+    document.getElementById('cdH').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(Math.floor(d%60000/1000)).padStart(2,'0');
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* GOOGLE CALENDAR */
+(function(){
+  var t=encodeURIComponent('XV Anos de Isabella Serrano');
+  var d=encodeURIComponent('Recepcion: The Country Club of Winter Haven, 4200 Country Club Rd, Winter Haven, FL 33881 - 5:00 PM');
+  var l=encodeURIComponent('The Country Club of Winter Haven, 4200 Country Club Rd, Winter Haven, FL 33881');
+  document.getElementById('gcalBtn').href=
+    'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+t+'&dates=20270206T220000Z/20270207T040000Z&details='+d+'&location='+l;
+})();
+
+/* RSVP - Panel de Invitados */
+(function(){
+  var PANEL_API='https://panel-invitados.vercel.app/api/confirmar';
+  var RSVP_URL='https://xv-isabella-serrano.vercel.app';
+  var DEADLINE=new Date('2026-11-30T23:59:59-05:00').getTime();
+  var frozen=Date.now()>DEADLINE;
+
+  var qs=new URLSearchParams(window.location.search);
+  var urlPara=(qs.get('para')||'').trim();
+  var p=parseInt(qs.get('pases'),10);
+  var pases=(!isNaN(p)&&p>0)?Math.min(p,10):1;
+
+  var holaEl=document.getElementById('rsvpHola');
+  var bandeja=document.getElementById('rsvpBandeja');
+  var gracias=document.getElementById('rsvpGracias');
+  var gTitle=document.getElementById('rsvpGraciasTitle');
+  var gSub=document.getElementById('rsvpGraciasSub');
+  var editarBtn=document.getElementById('rsvpEditarBtn');
+  var fieldsEl=document.getElementById('rsvpFields');
+  var btnYes=document.getElementById('btnYes');
+  var btnNo=document.getElementById('btnNo');
+  var btn=document.getElementById('rsvpBtn');
+  var btnText=document.getElementById('rsvpBtnText');
+  var fb=document.getElementById('rsvpFeedback');
+  var estado=null,bloqueado=false;
+
+  if(urlPara)holaEl.textContent='¡Hola, '+urlPara+'!';
+
+  if(!isNaN(p)&&p>0){
+    var circles=document.getElementById('pasesCircles');
+    for(var i=1;i<=Math.min(pases,10);i++){
+      var c=document.createElement('div');
+      c.className='pases-circle active';
+      circles.appendChild(c);
+    }
+    document.getElementById('pasesWrap').style.display='block';
+  }
+
+  for(var j=1;j<=pases;j++){
+    var inp=document.createElement('input');
+    inp.type='text';inp.id='rsvpName'+j;
+    inp.placeholder='Nombre completo del invitado '+j;
+    inp.autocomplete='name';
+    if(j===1&&urlPara)inp.value=urlPara;
+    fieldsEl.appendChild(inp);
+  }
+  function getNombres(){
+    var out=[];
+    for(var k=1;k<=pases;k++){
+      var v=document.getElementById('rsvpName'+k).value.trim();
+      if(v)out.push(v);
+    }
+    return out;
+  }
+  function setNombres(arr){
+    for(var k=1;k<=pases;k++){
+      var el=document.getElementById('rsvpName'+k);
+      el.value=(arr&&arr[k-1])?arr[k-1]:(k===1&&urlPara?urlPara:'');
+    }
+  }
+  function setFb(msg,col){fb.textContent=msg;fb.style.color=col||'var(--text)';}
+  function cerrarPorBloqueo(){
+    bloqueado=true;
+    btn.disabled=true;btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
+    setFb('Tu respuesta ya quedó registrada y no se puede modificar. Si necesitas un cambio, contacta a la familia.','#8A5A2B');
+  }
+
+  function select(e){
+    estado=e;
+    btnYes.classList.toggle('on',e==='confirmado');
+    btnNo.classList.toggle('on',e==='declino');
+    fieldsEl.style.display=(e==='confirmado')?'block':'none';
+    if(e==='declino')setNombres([]);
+  }
+  btnYes.addEventListener('click',function(){if(!frozen&&!bloqueado)select('confirmado');});
+  btnNo.addEventListener('click',function(){if(!frozen&&!bloqueado)select('declino');});
+
+  function mostrarGracias(e,nombres){
+    if(e==='confirmado'){
+      gTitle.textContent='¡Gracias por confirmar!';
+      gSub.textContent=(nombres.length<=1)
+        ?('Te esperamos, '+(nombres[0]||urlPara||'')+'.')
+        :('Confirmamos '+nombres.length+' lugares: '+nombres.join(', ')+'.');
+    }else{
+      gTitle.textContent='Gracias por avisarnos';
+      gSub.textContent='Lamentamos que no puedas acompañarnos. Te vamos a extrañar.';
+    }
+    bandeja.style.display='none';
+    gracias.style.display='';
+    editarBtn.disabled=frozen||bloqueado;
+  }
+  editarBtn.addEventListener('click',function(){
+    if(frozen||bloqueado)return;
+    gracias.style.display='none';
+    bandeja.style.display='';
+    setFb('','');
+  });
+
+  btn.disabled=true;
+  if(urlPara){
+    fetch(PANEL_API+'?nombre='+encodeURIComponent(urlPara)+'&url_boda='+encodeURIComponent(RSVP_URL))
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var inv=d&&(d.invitado||d);
+        if(inv&&inv.estado){
+          select(inv.estado);
+          setNombres(inv.nombres_confirmados||[]);
+          btnText.textContent='Actualizar respuesta';
+          mostrarGracias(inv.estado,inv.nombres_confirmados||[]);
+        }
+        if(inv&&inv.bloqueado)cerrarPorBloqueo();
+      })
+      .catch(function(){})
+      .then(function(){if(!bloqueado)btn.disabled=frozen;});
+  }else{
+    btn.disabled=frozen;
+  }
+  if(frozen){
+    btnYes.disabled=true;btnNo.disabled=true;
+    setFb('El periodo de confirmación cerró el 30 de noviembre de 2026.','#8A5A2B');
+  }
+
+  btn.addEventListener('click',function(){
+    if(frozen)return;
+    if(!estado){setFb('Por favor elige si podrás acompañarnos.','#8A5A2B');return;}
+    var nombres=getNombres();
+    if(estado==='confirmado'&&nombres.length===0){
+      setFb('Escribe al menos un nombre.','#8A5A2B');return;
+    }
+    btn.disabled=true;btnText.textContent='Enviando...';
+    fetch(PANEL_API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        nombre:urlPara||(nombres[0]||'Invitado'),
+        url_boda:RSVP_URL,
+        estado:estado,
+        pases_confirmados:(estado==='confirmado')?nombres.length:0,
+        nombres_confirmados:(estado==='confirmado')?nombres:[]
+      })
+    })
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(d){return {ok:r.ok,data:d};});})
+    .then(function(res){
+      if(res.ok){
+        setFb('','');
+        btnText.textContent='Actualizar respuesta';
+        btn.disabled=false;
+        mostrarGracias(estado,nombres);
+        return;
+      }
+      btn.disabled=false;btnText.textContent='Confirmar asistencia';
+      var err=(res.data&&(res.data.error||res.data.code))||'';
+      if(err==='respuestas_cerradas'){cerrarPorBloqueo();return;}
+      setFb(
+        err==='no_match'
+          ? 'No pudimos identificar tu invitación. Abre el enlace personalizado que te enviaron; ese es el único que registra tu confirmación.'
+          : err==='invitacion_borrada'
+            ? 'Esta invitación ya no está activa. Contacta a la familia para que te envíen un enlace nuevo.'
+            : 'Hubo un problema al enviar. Inténtalo de nuevo.',
+        '#8A5A2B');
+    })
+    .catch(function(){
+      btn.disabled=false;btnText.textContent='Confirmar asistencia';
+      setFb('Sin conexión. Verifica tu internet e inténtalo de nuevo.','#8A5A2B');
+    });
+  });
+})();
+
+/* MUSICA */
+(function(){
+  var fab=document.getElementById('musicFab'),audio=document.getElementById('bgAudio');
+  audio.volume=0.25;
+  fab.addEventListener('click',function(){
+    if(audio.paused){audio.play().catch(function(){});}
+    else{audio.pause();}
+  });
+  audio.addEventListener('play',function(){fab.classList.add('is-playing');});
+  audio.addEventListener('pause',function(){fab.classList.remove('is-playing');});
+})();
+</script>
+</body>
+</html>
