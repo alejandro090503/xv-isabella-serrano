@@ -11,14 +11,14 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Lato:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Marcellus&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Lato',sans-serif;font-weight:500;font-size:16px;
+  font-family:'Marcellus',serif;font-weight:400;font-size:17px;
   color:#463C31;background:#FDFBF7;line-height:1.65;overflow-x:hidden;
 }
 :root{
@@ -73,22 +73,29 @@ body{
 
 /* HERO */
 .hero{position:relative;width:100%;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);}
-.hero-bg{position:absolute;inset:0;background:url('./hero.jpg') center top/cover no-repeat;}
+.hero-bg{
+  position:absolute;inset:0;background:url('./hero.jpg') center top/cover no-repeat;
+  /* La mascara va en la capa de la FOTO, no en la seccion: si se aplicara a
+     la seccion recortaria tambien el velo y el nombre. La foto se disuelve
+     hasta 0 y entrega el marfil del fondo sin ningun borde duro. */
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 56%,rgba(0,0,0,.86) 72%,rgba(0,0,0,.45) 87%,rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 56%,rgba(0,0,0,.86) 72%,rgba(0,0,0,.45) 87%,rgba(0,0,0,0) 100%);
+}
 .hero-veil{
   position:absolute;inset:0;
   background:linear-gradient(to bottom,
-    rgba(253,251,247,0) 0%,
-    rgba(253,251,247,0) 30%,
-    rgba(120,100,74,0.16) 50%,
-    rgba(150,128,96,0.30) 64%,
-    rgba(253,251,247,0.72) 84%,
-    #FDFBF7 100%);
+    rgba(96,80,60,0.06) 0%,
+    rgba(96,80,60,0.04) 34%,
+    rgba(96,80,60,0.30) 62%,
+    rgba(96,80,60,0.46) 78%,
+    rgba(96,80,60,0.16) 92%,
+    rgba(96,80,60,0) 100%);
 }
 .hero-bottom{position:relative;z-index:3;margin-top:auto;padding:0 28px 62px;text-align:center;}
 .hero-bottom::before{
   content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
   width:160%;height:420px;pointer-events:none;z-index:-1;
-  background:radial-gradient(ellipse 62% 52% at 50% 70%,rgba(66,54,40,.62) 0%,rgba(66,54,40,.42) 42%,rgba(66,54,40,.16) 68%,transparent 84%);
+  background:radial-gradient(ellipse 62% 50% at 50% 66%,rgba(58,47,34,.46) 0%,rgba(58,47,34,.30) 44%,rgba(58,47,34,.11) 70%,transparent 86%);
 }
 
 /* Texto champán con brillo suave */
@@ -158,8 +165,8 @@ section{padding:60px 24px;}
   color:var(--dark);line-height:1;font-variant-numeric:tabular-nums;
 }
 .cd-lbl{
-  font-family:'Lato',sans-serif;font-weight:600;
-  font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);margin-top:7px;
+  font-family:'Marcellus',serif;font-weight:400;
+  font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);margin-top:7px;
 }
 
 /* UBICACION */
@@ -175,13 +182,13 @@ section{padding:60px 24px;}
 }
 .loc-card p{font-size:16px;margin:4px 0;line-height:1.6;color:var(--text);}
 .loc-card p strong{font-weight:700;color:var(--dark);font-size:17px;}
-.loc-card .lh{font-family:'Lato',sans-serif;font-size:22px;font-weight:700;color:var(--dark);letter-spacing:2px;margin-top:14px;}
-.loc-note{font-family:'Lato',sans-serif;font-size:14px;font-weight:500;color:var(--accent);margin-top:6px;line-height:1.5;}
+.loc-card .lh{font-family:'Marcellus',serif;font-size:24px;font-weight:400;color:var(--dark);letter-spacing:2px;margin-top:14px;}
+.loc-note{font-family:'Marcellus',serif;font-size:15px;font-weight:400;color:var(--accent);margin-top:6px;line-height:1.5;}
 .map-embed{width:100%;height:200px;border:0;border-radius:12px;margin-top:18px;display:block;}
 .btn{
   display:inline-block;margin-top:16px;padding:14px 30px;min-height:46px;
   background:#6B5B45;color:#FFFFFF;border-radius:30px;
-  font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
+  font-family:'Marcellus',serif;font-size:14px;font-weight:400;
   text-transform:uppercase;letter-spacing:2px;text-decoration:none;
   transition:background .3s,transform .3s;border:none;cursor:pointer;
 }
@@ -204,8 +211,8 @@ section{padding:60px 24px;}
 .ti-dot{width:13px;height:13px;flex-shrink:0;border-radius:50%;background:var(--bg);border:2.5px solid var(--accent);}
 .ti-right{text-align:left;padding:14px 0 14px 18px;}
 .ti-content{display:flex;flex-direction:column;}
-.ti-time{font-family:'Lato',sans-serif;font-size:22px;font-weight:700;color:var(--dark);letter-spacing:1px;line-height:1.1;}
-.ti-ev{font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:.6px;color:var(--accent);margin-top:5px;line-height:1.45;}
+.ti-time{font-family:'Marcellus',serif;font-size:23px;font-weight:400;color:var(--dark);letter-spacing:1.4px;line-height:1.1;}
+.ti-ev{font-family:'Marcellus',serif;font-size:15px;font-weight:400;letter-spacing:.9px;color:var(--accent);margin-top:5px;line-height:1.45;}
 .ti-row-left .ti-left{grid-column:1;}
 .ti-row-left .ti-center{grid-column:2;}
 .ti-row-left .ti-right{grid-column:3;visibility:hidden;}
@@ -214,16 +221,20 @@ section{padding:60px 24px;}
 .ti-row-right .ti-right{grid-column:3;}
 
 /* DRESS CODE */
-.dc-note{text-align:center;font-family:'Lato',sans-serif;font-weight:700;font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);margin-bottom:10px;}
+.dc-note{text-align:center;font-family:'Marcellus',serif;font-weight:400;font-size:19px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);margin-bottom:10px;}
 .dc-sub{text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;color:var(--text);line-height:1.55;margin:0 auto 26px;max-width:330px;}
+.dc-figures{display:flex;justify-content:center;align-items:flex-end;gap:16px;margin:0 auto 26px;max-width:340px;}
+.dc-fig{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;flex:1;min-width:0;}
+.dc-fig img{height:clamp(200px,52vw,258px);width:auto;max-width:100%;object-fit:contain;object-position:bottom center;filter:drop-shadow(0 10px 18px rgba(125,107,83,.26));}
+.dc-fig-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);}
 .swatches{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
 .sw{text-align:center;}
 .sw .dot{width:66px;height:66px;border-radius:50%;margin:0 auto 10px;box-shadow:0 8px 22px rgba(125,107,83,.26);border:1px solid var(--line);}
-.sw .lbl{font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);}
+.sw .lbl{font-family:'Marcellus',serif;font-size:14px;font-weight:400;letter-spacing:1px;text-transform:uppercase;color:var(--accent);}
 
 /* FAMILIA */
 .fam{display:flex;flex-direction:column;gap:26px;align-items:center;text-align:center;}
-.fam-g .role{font-family:'Lato',sans-serif;font-weight:600;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.fam-g .role{font-family:'Marcellus',serif;font-weight:400;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
 .fam-g .names{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:var(--dark);line-height:1.6;}
 .amp{font-style:italic;font-size:17px;color:var(--accent);}
 .flor{font-family:'Cormorant Garamond',serif;font-size:18px;color:#B49A78;letter-spacing:10px;}
@@ -252,7 +263,7 @@ section{padding:60px 24px;}
 .env-mailbox-icon{width:42px;height:42px;color:var(--accent);margin-top:6px;}
 .env-title{font-family:'Great Vibes',cursive;font-size:34px;line-height:1.35;padding:.08em 0;color:var(--dark);}
 .env-desc{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;font-style:italic;color:var(--text);line-height:1.7;max-width:300px;}
-.env-tap-hint{font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-top:18px;opacity:0;transition:opacity .5s ease;position:relative;z-index:1;}
+.env-tap-hint{font-family:'Marcellus',serif;font-size:14px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-top:18px;opacity:0;transition:opacity .5s ease;position:relative;z-index:1;}
 .env-tap-hint.show{opacity:.9;animation:envHintPulse 2.4s ease-in-out infinite;}
 .env-interactive.open~.env-tap-hint{opacity:0!important;animation:none;pointer-events:none;}
 @keyframes envHintPulse{0%,100%{opacity:.55}50%{opacity:1}}
@@ -281,19 +292,19 @@ section{padding:60px 24px;}
 .rsvp-divider::before,.rsvp-divider::after{content:"";flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(182,143,82,.55),transparent);}
 .rsvp-divider svg{color:#B68F52;flex-shrink:0;}
 .pases-display{margin:0 auto 22px;padding:16px 22px;background:rgba(212,197,178,.24);border:1px solid var(--line);border-radius:14px;display:none;align-items:center;justify-content:space-between;gap:16px;}
-.pases-label{font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);text-align:left;line-height:1.45;}
+.pases-label{font-family:'Marcellus',serif;font-size:13px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);text-align:left;line-height:1.45;}
 .pases-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:46px;color:#8A6C3E;line-height:1;}
 .rsvp-toggle{display:flex;gap:10px;margin:0 auto 16px;}
 .rsvp-toggle-btn{
   flex:1;padding:14px 8px;min-height:50px;border:1.5px solid var(--line);background:rgba(255,255,255,.75);
-  cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--text);border-radius:10px;transition:all .25s;
+  cursor:pointer;font-family:'Marcellus',serif;font-size:16px;font-weight:400;color:var(--text);border-radius:10px;transition:all .25s;
 }
 .rsvp-toggle-btn.on{background:#6B5B45;border-color:#6B5B45;color:#FFFFFF;box-shadow:0 6px 16px rgba(107,91,69,.28);}
 .rsvp-toggle-btn:disabled{opacity:.5;cursor:not-allowed;}
 .rsvp-fields{display:none;flex-direction:column;gap:9px;margin-bottom:16px;}
 .rsvp-fields input{
   width:100%;padding:15px 16px;min-height:50px;border:1.5px solid var(--line);border-radius:10px;
-  background:rgba(255,255,255,.92);font-family:'Lato',sans-serif;font-size:16px;font-weight:500;color:#3A3128;
+  background:rgba(255,255,255,.92);font-family:'Marcellus',serif;font-size:16px;font-weight:400;color:#3A3128;
   outline:none;transition:border-color .3s,box-shadow .3s;-webkit-appearance:none;
 }
 .rsvp-fields input::placeholder{color:rgba(70,60,49,.55);}
@@ -301,26 +312,26 @@ section{padding:60px 24px;}
 .rsvp-btn{
   display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
   padding:17px 28px;min-height:54px;border-radius:50px;border:none;cursor:pointer;
-  background:#6B5B45;color:#FFFFFF;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
+  background:#6B5B45;color:#FFFFFF;font-family:'Marcellus',serif;font-size:14px;font-weight:400;
   letter-spacing:.22em;text-transform:uppercase;transition:background .3s,transform .25s;
   box-shadow:0 8px 22px rgba(107,91,69,.28);
 }
 .rsvp-btn:hover{background:#584A38;transform:translateY(-2px);}
 .rsvp-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
-.rsvp-feedback{font-family:'Lato',sans-serif;font-size:15px;font-weight:600;line-height:1.5;margin-top:14px;}
+.rsvp-feedback{font-family:'Marcellus',serif;font-size:16px;font-weight:400;line-height:1.5;margin-top:14px;}
 .rsvp-gracias{padding:14px 4px 4px;}
 .rsvp-gracias-icon{color:#8A6C3E;margin:0 auto 10px;display:block;}
 .rsvp-gracias-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.35;}
 .rsvp-gracias-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text);line-height:1.6;margin-bottom:18px;}
-.rsvp-editar-btn{padding:13px 24px;min-height:46px;border:1.5px solid #8A6C3E;background:transparent;cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:#8A6C3E;border-radius:24px;transition:all .25s;}
+.rsvp-editar-btn{padding:13px 24px;min-height:46px;border:1.5px solid #8A6C3E;background:transparent;cursor:pointer;font-family:'Marcellus',serif;font-size:15px;font-weight:400;color:#8A6C3E;border-radius:24px;transition:all .25s;}
 .rsvp-editar-btn:disabled{opacity:.45;cursor:not-allowed;}
-.rsvp-deadline{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8A6C3E;}
+.rsvp-deadline{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:'Marcellus',serif;font-size:13px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:#8A6C3E;}
 
 /* FOOTER */
 footer{padding:48px 20px 100px;text-align:center;}
 footer .fn{font-family:'Great Vibes',cursive;font-size:52px;color:var(--dark);}
 footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-top:6px;}
-footer .fc{font-family:'Lato',sans-serif;font-size:13px;font-weight:500;letter-spacing:1px;color:var(--accent);margin-top:22px;padding:0 24px;line-height:1.6;}
+footer .fc{font-family:'Marcellus',serif;font-size:14px;font-weight:400;letter-spacing:1px;color:var(--accent);margin-top:22px;padding:0 24px;line-height:1.6;}
 footer .fc a{color:var(--accent);text-decoration:none;}
 
 /* ── VINILO (musica) ── */
@@ -360,7 +371,7 @@ footer .fc a{color:var(--accent);text-decoration:none;}
 }
 .vinyl-sheen{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.10) 42%,rgba(255,255,255,.18) 48%,rgba(255,255,255,.10) 54%,transparent 66%);pointer-events:none;}
 .vinyl-label-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Great Vibes',cursive;font-size:13px;color:#3A2E21;text-align:center;line-height:1;opacity:.9;pointer-events:none;width:26px;}
-.vinyl-label-text small{font-family:'Lato',sans-serif;font-size:5px;font-weight:700;letter-spacing:.12em;display:block;margin-top:1px;opacity:.75;}
+.vinyl-label-text small{font-family:'Marcellus',serif;font-size:5px;font-weight:400;letter-spacing:.12em;display:block;margin-top:1px;opacity:.75;}
 .vinyl-hole{position:absolute;top:50%;left:50%;width:6px;height:6px;transform:translate(-50%,-50%);border-radius:50%;background:#231B12;box-shadow:0 0 0 1.5px rgba(232,211,172,.55);}
 .vinyl-icons{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:17px;height:17px;pointer-events:none;z-index:2;color:#F6E9CE;}
 .vinyl-icons svg{width:100%;height:100%;display:block;}
@@ -391,7 +402,7 @@ footer .fc a{color:var(--accent);text-decoration:none;}
 .lg-btn{
   padding:16px 24px;min-height:54px;border-radius:50px;border:1.5px solid #B68F52;
   background:rgba(255,255,255,.88);cursor:pointer;
-  font-family:'Lato',sans-serif;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#584A38;
+  font-family:'Marcellus',serif;font-size:15px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:#584A38;
   transition:background .25s,transform .25s,color .25s;
 }
 .lg-btn:hover{background:#6B5B45;color:#FFFFFF;transform:translateY(-2px);}
@@ -403,7 +414,7 @@ footer .fc a{color:var(--accent);text-decoration:none;}
 }
 .lang-fab button{
   border:none;background:transparent;cursor:pointer;padding:9px 13px;min-height:38px;
-  font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;color:#7D6B53;transition:all .2s;
+  font-family:'Marcellus',serif;font-size:13px;font-weight:400;letter-spacing:.12em;color:#7D6B53;transition:all .2s;
 }
 .lang-fab button.on{background:#6B5B45;color:#FFFFFF;}
 
@@ -414,7 +425,7 @@ footer .fc a{color:var(--accent);text-decoration:none;}
 #env-flash{position:fixed;inset:0;background:#FFFFFF;z-index:9999;opacity:0;pointer-events:none;}
 .envelope-hint{
   position:absolute;bottom:48px;left:50%;transform:translateX(-50%);
-  font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  font-family:'Marcellus',serif;font-size:14px;font-weight:400;letter-spacing:4px;text-transform:uppercase;
   color:#584A38;opacity:0;cursor:pointer;white-space:nowrap;z-index:10;
   background:rgba(253,251,247,0.94);border:1px solid rgba(182,143,82,0.6);
   padding:11px 22px;border-radius:30px;
@@ -612,6 +623,16 @@ footer .fc a{color:var(--accent);text-decoration:none;}
     <h2 class="sec-title" data-es="Dress Code" data-en="Dress Code">Dress Code</h2>
     <div class="dc-note" data-es="Semi Formal" data-en="Semi Formal">Semi Formal</div>
     <p class="dc-sub" data-es="La paleta de la noche es <strong>blanco, marfil y beige</strong>. Nos encantar&iacute;a verte en estos tonos." data-en="The palette of the night is <strong>white, ivory and beige</strong>. We would love to see you in these tones.">La paleta de la noche es <strong>blanco, marfil y beige</strong>. Nos encantar&iacute;a verte en estos tonos.</p>
+    <div class="dc-figures rv">
+      <div class="dc-fig">
+        <img src="dc-caballero.png" alt="Caballero con atuendo semi formal" loading="lazy">
+        <span class="dc-fig-label" data-es="Caballeros" data-en="Gentlemen">Caballeros</span>
+      </div>
+      <div class="dc-fig">
+        <img src="dc-dama.png" alt="Dama con vestido semi formal" loading="lazy">
+        <span class="dc-fig-label" data-es="Damas" data-en="Ladies">Damas</span>
+      </div>
+    </div>
     <div class="swatches" id="swatches">
       <div class="sw"><div class="dot" style="background:#FFFFFF;"></div><div class="lbl" data-es="Blanco" data-en="White">Blanco</div></div>
       <div class="sw"><div class="dot" style="background:#F6F0E4;"></div><div class="lbl" data-es="Marfil" data-en="Ivory">Marfil</div></div>
