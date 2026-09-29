@@ -72,7 +72,15 @@ body{
 }
 
 /* HERO */
-.hero{position:relative;width:100%;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);}
+.hero-zone{position:relative;background:var(--bg);}
+.hero-zone::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url('./bg6.jpg') center bottom/cover no-repeat;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 62%,rgba(0,0,0,.55) 82%,rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 62%,rgba(0,0,0,.55) 82%,rgba(0,0,0,0) 100%);
+}
+.hero-zone > *{position:relative;z-index:1;}
+.hero{position:relative;width:100%;min-height:100dvh;display:flex;flex-direction:column;background:transparent;}
 .hero-bg{
   position:absolute;inset:0;background:url('./hero.jpg') center top/cover no-repeat;
   /* La mascara va en la capa de la FOTO, no en la seccion: si se aplicara a
@@ -109,7 +117,7 @@ body{
 @keyframes champFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
 /* FECHA HERO */
-.fecha-sec{padding:32px 26px 10px;text-align:center;}
+.fecha-sec{padding:14px 26px 46px;text-align:center;}
 .fecha-line{display:flex;align-items:center;justify-content:center;gap:18px;}
 .fecha-line .fl-bar{flex:1;max-width:60px;height:1px;background:linear-gradient(to right,transparent,var(--accent));opacity:.55;}
 .fecha-line .fl-bar.right{background:linear-gradient(to left,transparent,var(--accent));}
@@ -466,6 +474,7 @@ footer .fc a{color:var(--accent);text-decoration:none;}
 
 <div class="wrap" style="visibility:hidden">
 
+  <div class="hero-zone">
   <!-- HERO -->
   <section class="hero" style="padding:0;">
     <div class="hero-bg"></div>
@@ -479,18 +488,6 @@ footer .fc a{color:var(--accent);text-decoration:none;}
     </div>
   </section>
 
-  <!-- ORNAMENTO -->
-  <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
-    </svg></div>
-
   <!-- FECHA -->
   <div class="fecha-sec rv">
     <div class="fecha-line">
@@ -498,6 +495,7 @@ footer .fc a{color:var(--accent);text-decoration:none;}
       <div class="fecha-txt" data-es="06 &middot; Febrero &middot; MMXXVII" data-en="February &middot; 06 &middot; MMXXVII">06 &middot; Febrero &middot; MMXXVII</div>
       <div class="fl-bar right"></div>
     </div>
+  </div>
   </div>
 
   <!-- COUNTDOWN -->
@@ -956,6 +954,15 @@ document.querySelectorAll('#langFab button').forEach(function(b){
   }, { passive:false });
 }());
 
+function initHeroScroll(){
+  var hero=document.querySelector('.hero');
+  if(!hero)return;
+  var tl=gsap.timeline({scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.6}});
+  tl.to('.hero-bg',{opacity:0,yPercent:11,scale:1.06,ease:'none'},0)
+    .to('.hero-veil',{opacity:0,ease:'none'},0)
+    .to('.hero-bottom',{opacity:0,y:-38,ease:'none',duration:.5},0);
+}
+
 function launchPage(){
   gsap.timeline({defaults:{ease:'power2.out'}})
     .to('#hNm',{opacity:1,y:0,duration:1.8,ease:'power3.out'})
@@ -965,6 +972,7 @@ function launchPage(){
   initCrossfade();
   initDressCode();
   initEnvRain();
+  initHeroScroll();
 }
 
 function initScrollReveal(){
