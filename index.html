@@ -28,26 +28,40 @@ body{
   --dark:#3A3128;
   --text:#463C31;
   --line:rgba(125,107,83,0.30);
-  --surface:#FFFFFF;
   --card:#FFFFFF;
+  --champ:linear-gradient(105deg,#C9A96A 0%,#F2DFB8 22%,#B68F52 46%,#F7EBD1 68%,#C9A96A 100%);
 }
 
 .wrap{
   max-width:430px;margin:0 auto;position:relative;overflow:clip;z-index:1;
-  background-color:var(--bg);
-  background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><path d='M40 54 C28 46 14 37 14 27 C14 20 19 16 27 16 C32 16 36 19 40 23 C44 19 48 16 53 16 C61 16 66 20 66 27 C66 37 52 46 40 54Z' fill='none' stroke='%23AD9A7E' stroke-opacity='.30' stroke-width='1.2'/></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><path d='M30 40 C21 34 10 27 10 20 C10 14 14 11 20 11 C24 11 27 13 30 17 C33 13 36 11 40 11 C46 11 50 14 50 20 C50 27 39 34 30 40Z' fill='none' stroke='%23AD9A7E' stroke-opacity='.20' stroke-width='1'/></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='110' height='110'><path d='M55 72 C40 63 22 52 22 40 C22 31 28 26 36 26 C42 26 48 29 55 35 C62 29 68 26 74 26 C82 26 88 31 88 40 C88 52 70 63 55 72Z' fill='none' stroke='%23AD9A7E' stroke-opacity='.17' stroke-width='1.3'/></svg>");
-  background-repeat:repeat;
-  background-size:80px 80px, 60px 60px, 110px 110px;
-  background-position:0 0, 40px 35px, 20px 55px;
+  background:var(--bg);
 }
+
+/* ── FONDOS DE SECCION (alcohol ink) ── */
+.bgsec{position:relative;overflow:hidden;}
+.bgsec::before{
+  content:"";position:absolute;inset:0;
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  opacity:.92;pointer-events:none;z-index:0;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 96px,#000 calc(100% - 96px),transparent 100%),
+                     linear-gradient(to right,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);
+  -webkit-mask-composite:destination-in;
+  mask-image:linear-gradient(to bottom,transparent 0,#000 96px,#000 calc(100% - 96px),transparent 100%),
+             linear-gradient(to right,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);
+  mask-composite:intersect;
+}
+.bgsec > *{position:relative;z-index:1;}
+#scd::before{background-image:url('./bg3.jpg');}
+#subic::before{background-image:url('./bg1.jpg');}
+#siti::before{background-image:url('./bg4.jpg');}
+#sdc::before{background-image:url('./bg2.jpg');}
+#sfam::before{background-image:url('./bg6.jpg');}
+#sgifts::before{background-image:url('./bg5.jpg');}
+#srsvp::before{background-image:url('./bg2.jpg');transform:scaleX(-1);}
 
 /* LOADER */
 #loader{
-  position:fixed;inset:0;z-index:9999;
-  background:var(--bg);
+  position:fixed;inset:0;z-index:9999;background:var(--bg);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
 }
 .ld-name{font-family:'Great Vibes',cursive;font-size:84px;color:var(--dark);display:flex;gap:1px;}
@@ -64,13 +78,28 @@ body{
   position:absolute;inset:0;
   background:linear-gradient(to bottom,
     rgba(253,251,247,0) 0%,
-    rgba(253,251,247,0) 38%,
-    rgba(253,251,247,0.62) 58%,
-    rgba(253,251,247,0.95) 78%,
+    rgba(253,251,247,0) 30%,
+    rgba(120,100,74,0.16) 50%,
+    rgba(150,128,96,0.30) 64%,
+    rgba(253,251,247,0.72) 84%,
     #FDFBF7 100%);
 }
 .hero-bottom{position:relative;z-index:3;margin-top:auto;padding:0 28px 62px;text-align:center;}
-.hero-eyebrow{display:none;}
+.hero-bottom::before{
+  content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:160%;height:420px;pointer-events:none;z-index:-1;
+  background:radial-gradient(ellipse 62% 52% at 50% 70%,rgba(66,54,40,.62) 0%,rgba(66,54,40,.42) 42%,rgba(66,54,40,.16) 68%,transparent 84%);
+}
+
+/* Texto champán con brillo suave */
+.champ{
+  background:var(--champ);background-size:260% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:#B68F52;
+  animation:champFlow 8s ease-in-out infinite;
+  filter:drop-shadow(0 1px 1px rgba(40,31,20,.85)) drop-shadow(0 3px 10px rgba(40,31,20,.6)) drop-shadow(0 0 22px rgba(242,223,184,.45));
+}
+@keyframes champFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
 /* FECHA HERO */
 .fecha-sec{padding:32px 26px 10px;text-align:center;}
@@ -82,21 +111,20 @@ body{
   font-size:17px;letter-spacing:6px;text-transform:uppercase;color:var(--dark);
 }
 .hero-name{
-  font-family:'Great Vibes',cursive;font-size:92px;line-height:.95;
-  color:var(--dark);margin-bottom:10px;
-  text-shadow:0 2px 26px rgba(253,251,247,.85);
+  font-family:'Great Vibes',cursive;font-size:92px;line-height:1.05;
+  padding:.06em 0;margin-bottom:10px;
   transform:translateY(30px);opacity:0;
 }
 .hero-sub{display:flex;flex-direction:column;align-items:center;gap:4px;transform:translateY(16px);opacity:0;}
 .xv-num{
   font-family:'Cormorant Garamond',serif;font-weight:600;
-  font-size:66px;letter-spacing:12px;line-height:1;color:var(--dark);
+  font-size:66px;letter-spacing:12px;line-height:1.1;padding:.04em 0 .04em .2em;
   position:relative;display:inline-block;
 }
-.xv-num::after{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:50px;height:1px;background:var(--accent);opacity:.7;}
+.xv-num::after{content:'';position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);width:54px;height:1px;background:#E6CE9C;opacity:.95;box-shadow:0 1px 2px rgba(40,31,20,.5);}
 .xv-anos{
   font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
-  font-size:19px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-top:12px;
+  font-size:19px;letter-spacing:5px;text-transform:uppercase;margin-top:14px;padding:.1em .3em;
 }
 
 /* ORNAMENTO */
@@ -122,8 +150,8 @@ section{padding:60px 24px;}
 /* COUNTDOWN */
 .cd-row{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
 .cd-box{
-  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 3px;text-align:center;
-  box-shadow:0 6px 24px rgba(125,107,83,.13);
+  background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:14px;padding:18px 3px;text-align:center;
+  box-shadow:0 6px 24px rgba(125,107,83,.14);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
 }
 .cd-num{
   font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;
@@ -131,13 +159,14 @@ section{padding:60px 24px;}
 }
 .cd-lbl{
   font-family:'Lato',sans-serif;font-weight:600;
-  font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--accent);margin-top:7px;
+  font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);margin-top:7px;
 }
 
 /* UBICACION */
 .loc-card{
-  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 22px;
-  box-shadow:0 8px 30px rgba(125,107,83,.14);margin-bottom:18px;text-align:center;
+  background:rgba(255,255,255,.90);border:1px solid var(--line);border-radius:18px;padding:28px 22px;
+  box-shadow:0 10px 34px rgba(125,107,83,.18);margin-bottom:18px;text-align:center;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
 }
 .loc-card .lt{font-family:'Great Vibes',cursive;font-size:38px;color:var(--dark);margin-bottom:6px;}
 .loc-card .ls{
@@ -146,14 +175,8 @@ section{padding:60px 24px;}
 }
 .loc-card p{font-size:16px;margin:4px 0;line-height:1.6;color:var(--text);}
 .loc-card p strong{font-weight:700;color:var(--dark);font-size:17px;}
-.loc-card .lh{
-  font-family:'Lato',sans-serif;font-size:22px;font-weight:700;
-  color:var(--dark);letter-spacing:2px;margin-top:14px;
-}
-.loc-note{
-  font-family:'Lato',sans-serif;font-size:14px;font-weight:500;color:var(--accent);
-  margin-top:6px;line-height:1.5;
-}
+.loc-card .lh{font-family:'Lato',sans-serif;font-size:22px;font-weight:700;color:var(--dark);letter-spacing:2px;margin-top:14px;}
+.loc-note{font-family:'Lato',sans-serif;font-size:14px;font-weight:500;color:var(--accent);margin-top:6px;line-height:1.5;}
 .map-embed{width:100%;height:200px;border:0;border-radius:12px;margin-top:18px;display:block;}
 .btn{
   display:inline-block;margin-top:16px;padding:14px 30px;min-height:46px;
@@ -173,7 +196,7 @@ section{padding:60px 24px;}
 .tl::before{
   content:'';position:absolute;top:10px;bottom:10px;left:50%;transform:translateX(-50%);
   width:1px;background:linear-gradient(to bottom,transparent,var(--accent) 15%,var(--accent) 85%,transparent);
-  opacity:.4;z-index:0;
+  opacity:.45;z-index:0;
 }
 .ti{display:contents;}
 .ti-left{text-align:right;padding:14px 18px 14px 0;}
@@ -191,28 +214,19 @@ section{padding:60px 24px;}
 .ti-row-right .ti-right{grid-column:3;}
 
 /* DRESS CODE */
-.dc-note{
-  text-align:center;font-family:'Lato',sans-serif;font-weight:700;
-  font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);margin-bottom:10px;
-}
-.dc-sub{
-  text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;
-  color:var(--text);line-height:1.55;margin:0 auto 26px;max-width:330px;
-}
+.dc-note{text-align:center;font-family:'Lato',sans-serif;font-weight:700;font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);margin-bottom:10px;}
+.dc-sub{text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;color:var(--text);line-height:1.55;margin:0 auto 26px;max-width:330px;}
 .swatches{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
 .sw{text-align:center;}
-.sw .dot{width:66px;height:66px;border-radius:50%;margin:0 auto 10px;box-shadow:0 8px 22px rgba(125,107,83,.22);border:1px solid var(--line);}
+.sw .dot{width:66px;height:66px;border-radius:50%;margin:0 auto 10px;box-shadow:0 8px 22px rgba(125,107,83,.26);border:1px solid var(--line);}
 .sw .lbl{font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);}
 
 /* FAMILIA */
 .fam{display:flex;flex-direction:column;gap:26px;align-items:center;text-align:center;}
-.fam-g .role{
-  font-family:'Lato',sans-serif;font-weight:600;
-  font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;
-}
+.fam-g .role{font-family:'Lato',sans-serif;font-weight:600;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
 .fam-g .names{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:var(--dark);line-height:1.6;}
 .amp{font-style:italic;font-size:17px;color:var(--accent);}
-.flor{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--beige);letter-spacing:10px;}
+.flor{font-family:'Cormorant Garamond',serif;font-size:18px;color:#B49A78;letter-spacing:10px;}
 
 /* CROSSFADE GALERIA */
 #sgal{padding:0;height:300vh;}
@@ -221,117 +235,221 @@ section{padding:60px 24px;}
 .cf-fade-top{position:absolute;top:0;left:0;right:0;height:20%;z-index:2;background:linear-gradient(to bottom,#FDFBF7 0%,rgba(253,251,247,.6) 50%,transparent 100%);pointer-events:none;}
 .cf-fade-bot{position:absolute;bottom:0;left:0;right:0;height:20%;z-index:2;background:linear-gradient(to top,#FDFBF7 0%,rgba(253,251,247,.6) 50%,transparent 100%);pointer-events:none;}
 
-/* MESA DE REGALOS */
-.gift-grid{display:flex;flex-direction:column;gap:16px;}
-.gift-card{
-  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;
-  box-shadow:0 8px 30px rgba(125,107,83,.14);
-  display:flex;align-items:center;gap:18px;
-}
-.gift-logo-wrap{width:64px;height:64px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#EFE7DB;border:1px solid var(--line);}
-.gift-body{flex:1;min-width:0;}
-.gift-body .gb-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;color:var(--dark);margin-bottom:3px;}
-.gift-body .gb-desc{font-family:'Lato',sans-serif;font-size:15px;font-weight:500;color:var(--text);line-height:1.55;}
+/* LLUVIA DE SOBRES */
+#sgifts{text-align:center;}
+.env-rain{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.env-rain-item{position:absolute;top:-46px;will-change:transform;opacity:0;}
+.env-stage{position:relative;z-index:1;}
+.env-interactive{display:flex;flex-direction:column;align-items:center;cursor:pointer;outline:none;border:none;background:none;padding:0;margin:22px auto 0;opacity:0;width:100%;}
+.env-body{perspective:700px;position:relative;width:min(258px,74vw);aspect-ratio:260/200;filter:drop-shadow(0 10px 26px rgba(107,91,69,.28));}
+.env-body svg.env-svg{width:100%;height:100%;display:block;}
+.env-flap-wrap{position:absolute;top:23%;left:6.9%;width:86.2%;height:43%;transform-origin:top center;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:2;}
+.env-interactive.open .env-flap-wrap{transform:rotateX(-175deg);}
+.env-seal{position:absolute;top:52%;left:50%;width:23%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:3;transition:opacity .35s ease,transform .5s cubic-bezier(.4,0,.2,1);pointer-events:none;}
+.env-interactive.open .env-seal{opacity:0;transform:translate(-50%,-50%) scale(.7);}
+.env-open-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .55s .3s ease,opacity .4s .38s ease;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;text-align:center;pointer-events:none;}
+.env-interactive.open .env-open-content{max-height:340px;opacity:1;pointer-events:auto;margin-top:20px;}
+.env-mailbox-icon{width:42px;height:42px;color:var(--accent);margin-top:6px;}
+.env-title{font-family:'Great Vibes',cursive;font-size:34px;line-height:1.35;padding:.08em 0;color:var(--dark);}
+.env-desc{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;font-style:italic;color:var(--text);line-height:1.7;max-width:300px;}
+.env-tap-hint{font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-top:18px;opacity:0;transition:opacity .5s ease;position:relative;z-index:1;}
+.env-tap-hint.show{opacity:.9;animation:envHintPulse 2.4s ease-in-out infinite;}
+.env-interactive.open~.env-tap-hint{opacity:0!important;animation:none;pointer-events:none;}
+@keyframes envHintPulse{0%,100%{opacity:.55}50%{opacity:1}}
+.env-body.landed{animation:envBreathe 3.6s ease-in-out infinite;}
+@keyframes envBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 
 /* RSVP */
-.rsvp-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 20px;box-shadow:0 8px 30px rgba(125,107,83,.14);}
-.rsvp-hola{text-align:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--dark);margin-bottom:6px;}
-.pases-wrap{display:none;margin:10px 0 18px;}
-.pases-card{background:#F7F1E8;border:1px solid var(--line);border-radius:14px;padding:16px 14px;text-align:center;}
-.pases-title{font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
-.pases-sub{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;color:var(--text);margin-top:2px;}
-.pases-circles{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0 8px;}
-.pases-circle{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--accent);}
-.pases-circle.active{background:#6B5B45;border-color:#6B5B45;}
-.pases-honor{font-family:'Lato',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);}
-.rsvp-card label{display:block;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:16px 0 8px;}
-.rsvp-card label:first-of-type{margin-top:0;}
-.rsvp-toggle{display:flex;gap:10px;margin:4px 0;}
+.rsvp-card{
+  position:relative;background:rgba(255,255,255,.90);border:1px solid var(--line);
+  padding:38px 22px 32px;box-shadow:0 18px 44px rgba(125,107,83,.18);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.rsvp-card::before{content:"";position:absolute;inset:9px;border:1px solid rgba(182,143,82,.30);pointer-events:none;}
+.rsvp-corner{position:absolute;width:46px;height:46px;pointer-events:none;}
+.rsvp-corner--tl{top:0;left:0;}
+.rsvp-corner--tr{top:0;right:0;transform:scaleX(-1);}
+.rsvp-corner--bl{bottom:0;left:0;transform:scaleY(-1);}
+.rsvp-corner--br{bottom:0;right:0;transform:scale(-1,-1);}
+.rsvp-inner{text-align:center;position:relative;z-index:1;}
+.rsvp-ornament{display:block;margin:0 auto 20px;width:min(260px,72%);height:auto;}
+.rsvp-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:26px;color:var(--dark);margin-bottom:12px;line-height:1.3;}
+.rsvp-title em{color:#9A7B45;font-style:italic;}
+.rsvp-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text);line-height:1.7;margin-bottom:22px;}
+.rsvp-name-display{font-family:'Great Vibes',cursive;font-size:42px;color:#8A6C3E;line-height:1.25;margin:6px auto 2px;padding:.06em 0;}
+.rsvp-divider{display:flex;align-items:center;gap:14px;margin:0 auto 22px;max-width:260px;}
+.rsvp-divider::before,.rsvp-divider::after{content:"";flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(182,143,82,.55),transparent);}
+.rsvp-divider svg{color:#B68F52;flex-shrink:0;}
+.pases-display{margin:0 auto 22px;padding:16px 22px;background:rgba(212,197,178,.24);border:1px solid var(--line);border-radius:14px;display:none;align-items:center;justify-content:space-between;gap:16px;}
+.pases-label{font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);text-align:left;line-height:1.45;}
+.pases-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:46px;color:#8A6C3E;line-height:1;}
+.rsvp-toggle{display:flex;gap:10px;margin:0 auto 16px;}
 .rsvp-toggle-btn{
-  flex:1;padding:14px 8px;min-height:48px;border:1.5px solid var(--line);background:#FFFFFF;
-  border-radius:10px;cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--text);transition:all .25s;
+  flex:1;padding:14px 8px;min-height:50px;border:1.5px solid var(--line);background:rgba(255,255,255,.75);
+  cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--text);border-radius:10px;transition:all .25s;
 }
 .rsvp-toggle-btn.on{background:#6B5B45;border-color:#6B5B45;color:#FFFFFF;box-shadow:0 6px 16px rgba(107,91,69,.28);}
 .rsvp-toggle-btn:disabled{opacity:.5;cursor:not-allowed;}
-.rsvp-fields{margin-top:12px;}
+.rsvp-fields{display:none;flex-direction:column;gap:9px;margin-bottom:16px;}
 .rsvp-fields input{
-  width:100%;padding:14px;min-height:48px;margin-bottom:9px;
-  border:1.5px solid var(--line);border-radius:10px;background:#FFFFFF;
-  font-family:'Lato',sans-serif;font-size:16px;font-weight:500;color:#3A3128;outline:none;
-  transition:border-color .3s;-webkit-appearance:none;
+  width:100%;padding:15px 16px;min-height:50px;border:1.5px solid var(--line);border-radius:10px;
+  background:rgba(255,255,255,.92);font-family:'Lato',sans-serif;font-size:16px;font-weight:500;color:#3A3128;
+  outline:none;transition:border-color .3s,box-shadow .3s;-webkit-appearance:none;
 }
 .rsvp-fields input::placeholder{color:rgba(70,60,49,.55);}
-.rsvp-fields input:focus{border-color:#6B5B45;}
-.rsvp-feedback{text-align:center;font-family:'Lato',sans-serif;font-size:15px;font-weight:600;line-height:1.5;margin-top:14px;}
-.rsvp-gracias{padding:20px 10px 8px;text-align:center;}
-.rsvp-gracias-icon{color:#6B5B45;margin:0 auto 10px;display:block;}
-.rsvp-gracias-title{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.35;}
-.rsvp-gracias-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text);line-height:1.6;margin-bottom:18px;}
-.rsvp-editar-btn{padding:13px 24px;min-height:46px;border:1.5px solid #6B5B45;background:transparent;cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:#6B5B45;border-radius:24px;transition:all .25s;}
-.rsvp-editar-btn:disabled{opacity:.45;cursor:not-allowed;}
-.rsvp-deadline{text-align:center;font-family:'Lato',sans-serif;font-size:14px;font-weight:500;color:var(--accent);margin-top:16px;line-height:1.5;}
-.btn-wa{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;margin-top:20px;padding:16px;min-height:52px;
-  background:#6B5B45;color:#fff;border-radius:30px;border:none;cursor:pointer;
-  font-family:'Lato',sans-serif;font-size:14px;font-weight:700;
-  text-transform:uppercase;letter-spacing:2px;transition:background .3s,transform .3s;
+.rsvp-fields input:focus{border-color:#B68F52;box-shadow:0 0 0 3px rgba(182,143,82,.18);}
+.rsvp-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  padding:17px 28px;min-height:54px;border-radius:50px;border:none;cursor:pointer;
+  background:#6B5B45;color:#FFFFFF;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;transition:background .3s,transform .25s;
+  box-shadow:0 8px 22px rgba(107,91,69,.28);
 }
-.btn-wa:hover{background:#584A38;transform:translateY(-2px);}
-.btn-wa:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.rsvp-btn:hover{background:#584A38;transform:translateY(-2px);}
+.rsvp-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.rsvp-feedback{font-family:'Lato',sans-serif;font-size:15px;font-weight:600;line-height:1.5;margin-top:14px;}
+.rsvp-gracias{padding:14px 4px 4px;}
+.rsvp-gracias-icon{color:#8A6C3E;margin:0 auto 10px;display:block;}
+.rsvp-gracias-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.35;}
+.rsvp-gracias-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text);line-height:1.6;margin-bottom:18px;}
+.rsvp-editar-btn{padding:13px 24px;min-height:46px;border:1.5px solid #8A6C3E;background:transparent;cursor:pointer;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:#8A6C3E;border-radius:24px;transition:all .25s;}
+.rsvp-editar-btn:disabled{opacity:.45;cursor:not-allowed;}
+.rsvp-deadline{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8A6C3E;}
 
 /* FOOTER */
-footer{padding:48px 20px 92px;text-align:center;}
+footer{padding:48px 20px 100px;text-align:center;}
 footer .fn{font-family:'Great Vibes',cursive;font-size:52px;color:var(--dark);}
 footer .fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-top:6px;}
 footer .fc{font-family:'Lato',sans-serif;font-size:13px;font-weight:500;letter-spacing:1px;color:var(--accent);margin-top:22px;padding:0 24px;line-height:1.6;}
 footer .fc a{color:var(--accent);text-decoration:none;}
 
-/* MUSICA FAB */
-.music-fab{
-  position:fixed;bottom:24px;right:24px;z-index:998;
-  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
-  background:#6B5B45;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(107,91,69,.45);animation:fabpulse 2.8s infinite ease-out;
+/* ── VINILO (musica) ── */
+.vinyl-btn{position:fixed;bottom:20px;right:20px;z-index:998;width:70px;height:70px;border-radius:50%;padding:0;border:none;cursor:pointer;background:transparent;transition:transform .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 6px 20px rgba(58,49,40,.35);}
+.vinyl-btn:hover{transform:scale(1.08);}
+.vinyl-spin{width:100%;height:100%;border-radius:50%;position:relative;}
+.vinyl-btn.is-playing .vinyl-spin{animation:vinylSpin 1.8s linear infinite;}
+@keyframes vinylSpin{to{transform:rotate(360deg)}}
+.vinyl-disc{width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;
+  background:
+    radial-gradient(circle,#231B12 4%,transparent 4.5%),
+    radial-gradient(circle,#E8D3AC 0%,#B68F52 17%,#8A6C3E 19%,transparent 19.5%),
+    repeating-radial-gradient(circle,
+      transparent 20%,rgba(255,255,255,.07) 20.8%,transparent 21.5%,
+      transparent 24%,rgba(255,255,255,.05) 24.8%,transparent 25.5%,
+      transparent 28%,rgba(255,255,255,.07) 28.8%,transparent 29.5%,
+      transparent 32%,rgba(255,255,255,.05) 32.8%,transparent 33.5%,
+      transparent 36%,rgba(255,255,255,.07) 36.8%,transparent 37.5%,
+      transparent 40%,rgba(255,255,255,.05) 40.8%,transparent 41.5%,
+      transparent 44%,rgba(255,255,255,.07) 44.8%,transparent 45.5%,
+      transparent 48%,rgba(255,255,255,.05) 48.8%,transparent 49.5%,
+      transparent 52%,rgba(255,255,255,.07) 52.8%,transparent 53.5%,
+      transparent 56%,rgba(255,255,255,.05) 56.8%,transparent 57.5%,
+      transparent 60%,rgba(255,255,255,.07) 60.8%,transparent 61.5%,
+      transparent 64%,rgba(255,255,255,.05) 64.8%,transparent 65.5%,
+      transparent 68%,rgba(255,255,255,.07) 68.8%,transparent 69.5%,
+      transparent 72%,rgba(255,255,255,.05) 72.8%,transparent 73.5%,
+      transparent 76%,rgba(255,255,255,.07) 76.8%,transparent 77.5%,
+      transparent 80%,rgba(255,255,255,.05) 80.8%,transparent 81.5%,
+      transparent 84%,rgba(255,255,255,.07) 84.8%,transparent 85.5%,
+      transparent 88%,rgba(255,255,255,.05) 88.8%,transparent 89.5%,
+      transparent 92%,rgba(255,255,255,.07) 92.8%,transparent 93.5%,
+      transparent 96%,rgba(255,255,255,.05) 96.8%,transparent 97.5%
+    ),
+    radial-gradient(circle,#2B2118 0%,#3A2E21 60%,#231B12 100%);
+  box-shadow:inset 0 0 8px rgba(0,0,0,.45);
 }
-@keyframes fabpulse{
-  0%{box-shadow:0 0 0 0 rgba(107,91,69,.5);}
-  70%{box-shadow:0 0 0 18px rgba(107,91,69,0);}
-  100%{box-shadow:0 0 0 0 rgba(107,91,69,0);}
+.vinyl-sheen{position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.10) 42%,rgba(255,255,255,.18) 48%,rgba(255,255,255,.10) 54%,transparent 66%);pointer-events:none;}
+.vinyl-label-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Great Vibes',cursive;font-size:13px;color:#3A2E21;text-align:center;line-height:1;opacity:.9;pointer-events:none;width:26px;}
+.vinyl-label-text small{font-family:'Lato',sans-serif;font-size:5px;font-weight:700;letter-spacing:.12em;display:block;margin-top:1px;opacity:.75;}
+.vinyl-hole{position:absolute;top:50%;left:50%;width:6px;height:6px;transform:translate(-50%,-50%);border-radius:50%;background:#231B12;box-shadow:0 0 0 1.5px rgba(232,211,172,.55);}
+.vinyl-icons{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:17px;height:17px;pointer-events:none;z-index:2;color:#F6E9CE;}
+.vinyl-icons svg{width:100%;height:100%;display:block;}
+.vinyl-icon-pause{display:none;}
+.vinyl-btn.is-playing .vinyl-icon-play{display:none;}
+.vinyl-btn.is-playing .vinyl-icon-pause{display:block;}
+.vinyl-btn::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid #B68F52;opacity:.35;animation:vinylPulse 3s ease-in-out infinite;}
+.vinyl-btn.is-playing::after{animation-duration:1.6s;}
+@keyframes vinylPulse{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.12);opacity:.05}}
+.vinyl-tonearm{position:absolute;top:-4px;right:-2px;width:24px;height:34px;transform-origin:top right;transform:rotate(-28deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1;}
+.vinyl-btn.is-playing .vinyl-tonearm{transform:rotate(-12deg);}
+.vinyl-tonearm-line{position:absolute;top:2px;right:4px;width:2px;height:28px;background:#B68F52;border-radius:1px;transform:rotate(-5deg);transform-origin:top center;}
+.vinyl-tonearm-head{position:absolute;bottom:0;right:2px;width:5px;height:6px;background:#B68F52;border-radius:0 0 2px 2px;}
+
+/* ── SELECTOR DE IDIOMA ── */
+#langScreen{
+  position:fixed;inset:0;z-index:10002;background:#FDFBF7;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  padding:32px 26px;text-align:center;
 }
-.music-fab.is-playing{background:#463C31;}
-.music-fab svg{width:24px;height:24px;}
+#langScreen .lg-bg{position:absolute;inset:0;background:url('./bg6.jpg') center/cover no-repeat;opacity:.9;}
+#langScreen .lg-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;}
+.lg-mono{font-family:'Great Vibes',cursive;font-size:64px;line-height:1.1;padding:.06em 0;color:#8A6C3E;}
+.lg-rule{width:80px;height:1px;background:#B68F52;opacity:.7;margin:14px 0 18px;}
+.lg-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--dark);line-height:1.8;}
+.lg-title span{display:block;font-style:italic;font-size:15px;letter-spacing:2.4px;color:var(--accent);text-transform:none;}
+.lg-btns{display:flex;flex-direction:column;gap:12px;margin-top:26px;width:min(280px,82vw);}
+.lg-btn{
+  padding:16px 24px;min-height:54px;border-radius:50px;border:1.5px solid #B68F52;
+  background:rgba(255,255,255,.88);cursor:pointer;
+  font-family:'Lato',sans-serif;font-size:14px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#584A38;
+  transition:background .25s,transform .25s,color .25s;
+}
+.lg-btn:hover{background:#6B5B45;color:#FFFFFF;transform:translateY(-2px);}
+.lang-fab{
+  position:fixed;bottom:24px;left:20px;z-index:998;
+  display:flex;align-items:center;gap:0;border-radius:30px;overflow:hidden;
+  border:1px solid rgba(182,143,82,.65);background:rgba(253,251,247,.94);
+  box-shadow:0 6px 18px rgba(58,49,40,.22);
+}
+.lang-fab button{
+  border:none;background:transparent;cursor:pointer;padding:9px 13px;min-height:38px;
+  font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;color:#7D6B53;transition:all .2s;
+}
+.lang-fab button.on{background:#6B5B45;color:#FFFFFF;}
 
 /* ENVELOPE */
-#envelope-screen{position:fixed;inset:0;z-index:10000;overflow:hidden;cursor:pointer;opacity:0;background:#FDFBF7;}
+#envelope-screen{position:fixed;inset:0;z-index:10000;overflow:hidden;cursor:pointer;opacity:0;background:#FFFFFF;}
 #env-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:2;}
 #env-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:3;opacity:0;}
-#env-flash{position:fixed;inset:0;background:#FDFBF7;z-index:9999;opacity:0;pointer-events:none;}
+#env-flash{position:fixed;inset:0;background:#FFFFFF;z-index:9999;opacity:0;pointer-events:none;}
 .envelope-hint{
   position:absolute;bottom:48px;left:50%;transform:translateX(-50%);
   font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
-  color:#3A3128;opacity:0;cursor:pointer;white-space:nowrap;z-index:10;
-  background:rgba(253,251,247,0.92);border:1px solid rgba(125,107,83,0.5);
+  color:#584A38;opacity:0;cursor:pointer;white-space:nowrap;z-index:10;
+  background:rgba(253,251,247,0.94);border:1px solid rgba(182,143,82,0.6);
   padding:11px 22px;border-radius:30px;
 }
-.envelope-hint::after{content:none;}
 #loader{display:none;}
 </style>
 </head>
 <body>
 
+<!-- SELECTOR DE IDIOMA -->
+<div id="langScreen">
+  <div class="lg-bg"></div>
+  <div class="lg-in">
+    <div class="lg-mono">Isabella</div>
+    <div class="lg-rule"></div>
+    <p class="lg-title">Elige tu idioma<span>Choose your language</span></p>
+    <div class="lg-btns">
+      <button class="lg-btn" type="button" data-lang="es">Espa&ntilde;ol</button>
+      <button class="lg-btn" type="button" data-lang="en">English</button>
+    </div>
+  </div>
+</div>
+
 <!-- ENVELOPE -->
 <div id="envelope-screen" role="button" aria-label="Toca para abrir tu invitacion">
-  <img id="env-image" src="./sobre.png" alt="Invitacion de Isabella">
+  <img id="env-image" src="./sobre.jpg" alt="Invitacion de Isabella">
   <video id="env-video" src="./sobre-apertura.mp4" playsinline webkit-playsinline muted preload="auto"></video>
-  <p class="envelope-hint" id="env-hint">Toca para abrir</p>
+  <p class="envelope-hint" id="env-hint" data-es="Toca para abrir" data-en="Tap to open">Toca para abrir</p>
 </div>
 <div id="env-flash"></div>
 
 <!-- LOADER -->
 <div id="loader">
   <div class="ld-name" id="ldName"></div>
-  <div class="ld-tag" id="ldTag">Mis XV A&ntilde;os &middot; 06 Febrero 2027</div>
+  <div class="ld-tag" id="ldTag" data-es="Mis XV A&ntilde;os &middot; 06 Febrero 2027" data-en="My Sweet Fifteen &middot; February 06, 2027">Mis XV A&ntilde;os &middot; 06 Febrero 2027</div>
 </div>
 
 
@@ -342,77 +460,77 @@ footer .fc a{color:var(--accent);text-decoration:none;}
     <div class="hero-bg"></div>
     <div class="hero-veil"></div>
     <div class="hero-bottom">
-      <h1 class="hero-name" id="hNm">Isabella</h1>
+      <h1 class="hero-name champ" id="hNm">Isabella</h1>
       <div class="hero-sub" id="hSb">
-        <span class="xv-num">XV</span>
-        <span class="xv-anos">A&ntilde;os</span>
+        <span class="xv-num champ">XV</span>
+        <span class="xv-anos champ" data-es="A&ntilde;os" data-en="Years">A&ntilde;os</span>
       </div>
     </div>
   </section>
 
   <!-- ORNAMENTO -->
   <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
     </svg></div>
 
   <!-- FECHA -->
   <div class="fecha-sec rv">
     <div class="fecha-line">
       <div class="fl-bar"></div>
-      <div class="fecha-txt">06 &middot; Febrero &middot; MMXXVII</div>
+      <div class="fecha-txt" data-es="06 &middot; Febrero &middot; MMXXVII" data-en="February &middot; 06 &middot; MMXXVII">06 &middot; Febrero &middot; MMXXVII</div>
       <div class="fl-bar right"></div>
     </div>
   </div>
 
   <!-- COUNTDOWN -->
-  <section id="scd" class="rv">
-    <h2 class="sec-title">Cuenta Regresiva</h2>
-    <p class="sec-intro">S&aacute;bado 6 de febrero de 2027 &middot; Winter Haven, Florida</p>
+  <section id="scd" class="rv bgsec">
+    <h2 class="sec-title" data-es="Cuenta Regresiva" data-en="Countdown">Cuenta Regresiva</h2>
+    <p class="sec-intro" data-es="S&aacute;bado 6 de febrero de 2027 &middot; Winter Haven, Florida" data-en="Saturday, February 6, 2027 &middot; Winter Haven, Florida">S&aacute;bado 6 de febrero de 2027 &middot; Winter Haven, Florida</p>
     <div class="cd-row">
-      <div class="cd-box"><div class="cd-num" id="cdD">000</div><div class="cd-lbl">D&iacute;as</div></div>
-      <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">Horas</div></div>
-      <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">Minutos</div></div>
-      <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl">Segundos</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdD">000</div><div class="cd-lbl" data-es="D&iacute;as" data-en="Days">D&iacute;as</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl" data-es="Horas" data-en="Hours">Horas</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl" data-es="Minutos" data-en="Minutes">Minutos</div></div>
+      <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl" data-es="Segundos" data-en="Seconds">Segundos</div></div>
     </div>
   </section>
 
   <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
     </svg></div>
 
   <!-- UBICACION -->
-  <section id="subic">
-    <h2 class="sec-title rv">Ubicaci&oacute;n</h2>
+  <section id="subic" class="bgsec">
+    <h2 class="sec-title rv" data-es="Ubicaci&oacute;n" data-en="Location">Ubicaci&oacute;n</h2>
 
     <div class="loc-card rv" id="lc1">
-      <div class="lt">Recepci&oacute;n</div>
-      <div class="ls">Cena, Vals y Fiesta</div>
+      <div class="lt" data-es="Recepci&oacute;n" data-en="Reception">Recepci&oacute;n</div>
+      <div class="ls" data-es="Cena, Vals y Fiesta" data-en="Dinner, Waltz &amp; Party">Cena, Vals y Fiesta</div>
       <p><strong>The Country Club of Winter Haven</strong></p>
       <p>4200 Country Club Rd</p>
       <p>Winter Haven, FL 33881</p>
       <div class="lh">5:00 PM</div>
-      <p class="loc-note">Te pedimos llegar 15 minutos antes.<br>Estacionamiento disponible en el club.</p>
-      <a class="btn" href="https://maps.app.goo.gl/qyqjjEqXdTh2CZdv7" target="_blank" rel="noopener">C&oacute;mo Llegar</a>
+      <p class="loc-note" data-es="Te pedimos llegar 15 minutos antes.<br>Estacionamiento disponible en el club." data-en="Please arrive 15 minutes early.<br>Parking available at the club.">Te pedimos llegar 15 minutos antes.<br>Estacionamiento disponible en el club.</p>
+      <a class="btn" href="https://maps.app.goo.gl/qyqjjEqXdTh2CZdv7" target="_blank" rel="noopener" data-es="C&oacute;mo Llegar" data-en="Get Directions">C&oacute;mo Llegar</a>
       <iframe
         class="map-embed"
         src="https://maps.google.com/maps?q=The+Country+Club+of+Winter+Haven,+4200+Country+Club+Rd,+Winter+Haven,+FL+33881&output=embed&hl=es"
         allowfullscreen
         loading="lazy"
-        title="Mapa de The Country Club of Winter Haven"
+        title="The Country Club of Winter Haven"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
@@ -420,32 +538,32 @@ footer .fc a{color:var(--accent);text-decoration:none;}
 
   <!-- CALENDAR -->
   <section class="rv cal-c" id="scal">
-    <div class="eyebrow">No lo olvides</div>
-    <h2 class="sec-title">Gu&aacute;rdalo</h2>
-    <p>Agrega el evento a tu calendario</p>
-    <a class="btn" id="gcalBtn" href="#" target="_blank" rel="noopener">A&ntilde;adir a Google Calendar</a>
+    <div class="eyebrow" data-es="No lo olvides" data-en="Save the date">No lo olvides</div>
+    <h2 class="sec-title" data-es="Gu&aacute;rdalo" data-en="Save It">Gu&aacute;rdalo</h2>
+    <p data-es="Agrega el evento a tu calendario" data-en="Add the event to your calendar">Agrega el evento a tu calendario</p>
+    <a class="btn" id="gcalBtn" href="#" target="_blank" rel="noopener" data-es="A&ntilde;adir a Google Calendar" data-en="Add to Google Calendar">A&ntilde;adir a Google Calendar</a>
   </section>
 
   <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
     </svg></div>
 
   <!-- ITINERARIO -->
-  <section id="siti">
-    <div class="eyebrow rv">Programa del D&iacute;a</div>
-    <h2 class="sec-title rv">Itinerario</h2>
+  <section id="siti" class="bgsec">
+    <div class="eyebrow rv" data-es="Programa del D&iacute;a" data-en="Schedule of the Day">Programa del D&iacute;a</div>
+    <h2 class="sec-title rv" data-es="Itinerario" data-en="Itinerary">Itinerario</h2>
 
     <div class="tl">
 
       <div class="ti ti-row-left">
-        <div class="ti-left"><div class="ti-content"><div class="ti-time">5:00 PM</div><div class="ti-ev">Recepci&oacute;n de invitados</div></div></div>
+        <div class="ti-left"><div class="ti-content"><div class="ti-time">5:00 PM</div><div class="ti-ev" data-es="Recepci&oacute;n de invitados" data-en="Guest reception">Recepci&oacute;n de invitados</div></div></div>
         <div class="ti-center"><div class="ti-dot"></div></div>
         <div class="ti-right"></div>
       </div>
@@ -453,11 +571,11 @@ footer .fc a{color:var(--accent);text-decoration:none;}
       <div class="ti ti-row-right">
         <div class="ti-left"></div>
         <div class="ti-center"><div class="ti-dot"></div></div>
-        <div class="ti-right"><div class="ti-content"><div class="ti-time">5:45 PM</div><div class="ti-ev">Entrada de Isabella</div></div></div>
+        <div class="ti-right"><div class="ti-content"><div class="ti-time">5:45 PM</div><div class="ti-ev" data-es="Entrada de Isabella" data-en="Isabella&rsquo;s grand entrance">Entrada de Isabella</div></div></div>
       </div>
 
       <div class="ti ti-row-left">
-        <div class="ti-left"><div class="ti-content"><div class="ti-time">6:15 PM</div><div class="ti-ev">Vals de honor</div></div></div>
+        <div class="ti-left"><div class="ti-content"><div class="ti-time">6:15 PM</div><div class="ti-ev" data-es="Vals de honor" data-en="Waltz of honor">Vals de honor</div></div></div>
         <div class="ti-center"><div class="ti-dot"></div></div>
         <div class="ti-right"></div>
       </div>
@@ -465,11 +583,11 @@ footer .fc a{color:var(--accent);text-decoration:none;}
       <div class="ti ti-row-right">
         <div class="ti-left"></div>
         <div class="ti-center"><div class="ti-dot"></div></div>
-        <div class="ti-right"><div class="ti-content"><div class="ti-time">7:00 PM</div><div class="ti-ev">Cena y brindis</div></div></div>
+        <div class="ti-right"><div class="ti-content"><div class="ti-time">7:00 PM</div><div class="ti-ev" data-es="Cena y brindis" data-en="Dinner and toast">Cena y brindis</div></div></div>
       </div>
 
       <div class="ti ti-row-left">
-        <div class="ti-left"><div class="ti-content"><div class="ti-time">8:30 PM</div><div class="ti-ev">Fiesta y sorpresas</div></div></div>
+        <div class="ti-left"><div class="ti-content"><div class="ti-time">8:30 PM</div><div class="ti-ev" data-es="Fiesta y sorpresas" data-en="Dancing and surprises">Fiesta y sorpresas</div></div></div>
         <div class="ti-center"><div class="ti-dot"></div></div>
         <div class="ti-right"></div>
       </div>
@@ -478,53 +596,53 @@ footer .fc a{color:var(--accent);text-decoration:none;}
   </section>
 
   <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
     </svg></div>
 
   <!-- DRESS CODE -->
-  <section class="rv" id="sdc">
-    <div class="eyebrow">Etiqueta</div>
-    <h2 class="sec-title">Dress Code</h2>
-    <div class="dc-note">Semi Formal</div>
-    <p class="dc-sub">La paleta de la noche es <strong>blanco, marfil y beige</strong>. Nos encantar&iacute;a verte en estos tonos.</p>
+  <section class="rv bgsec" id="sdc">
+    <div class="eyebrow" data-es="Etiqueta" data-en="Attire">Etiqueta</div>
+    <h2 class="sec-title" data-es="Dress Code" data-en="Dress Code">Dress Code</h2>
+    <div class="dc-note" data-es="Semi Formal" data-en="Semi Formal">Semi Formal</div>
+    <p class="dc-sub" data-es="La paleta de la noche es <strong>blanco, marfil y beige</strong>. Nos encantar&iacute;a verte en estos tonos." data-en="The palette of the night is <strong>white, ivory and beige</strong>. We would love to see you in these tones.">La paleta de la noche es <strong>blanco, marfil y beige</strong>. Nos encantar&iacute;a verte en estos tonos.</p>
     <div class="swatches" id="swatches">
-      <div class="sw"><div class="dot" style="background:#FFFFFF;"></div><div class="lbl">Blanco</div></div>
-      <div class="sw"><div class="dot" style="background:#F6F0E4;"></div><div class="lbl">Marfil</div></div>
-      <div class="sw"><div class="dot" style="background:#D4C5B2;"></div><div class="lbl">Beige</div></div>
+      <div class="sw"><div class="dot" style="background:#FFFFFF;"></div><div class="lbl" data-es="Blanco" data-en="White">Blanco</div></div>
+      <div class="sw"><div class="dot" style="background:#F6F0E4;"></div><div class="lbl" data-es="Marfil" data-en="Ivory">Marfil</div></div>
+      <div class="sw"><div class="dot" style="background:#D4C5B2;"></div><div class="lbl" data-es="Beige" data-en="Beige">Beige</div></div>
     </div>
   </section>
 
   <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
     </svg></div>
 
   <!-- FAMILIA -->
-  <section id="sfam">
-    <div class="eyebrow rv">Con la Bendici&oacute;n de</div>
-    <h2 class="sec-title rv">Mi Familia</h2>
+  <section id="sfam" class="bgsec">
+    <div class="eyebrow rv" data-es="Con la Bendici&oacute;n de" data-en="With the Blessing of">Con la Bendici&oacute;n de</div>
+    <h2 class="sec-title rv" data-es="Mi Familia" data-en="My Family">Mi Familia</h2>
     <div class="fam">
       <div class="fam-g rv">
-        <div class="role">Mis Padres</div>
+        <div class="role" data-es="Mis Padres" data-en="My Parents">Mis Padres</div>
         <div class="names">Louiyi Serrano<br><span class="amp">&amp;</span><br>Marynid Serrano</div>
       </div>
       <div class="flor rv">&#10086; &#10086; &#10086;</div>
       <div class="fam-g rv">
-        <div class="role">Mis Padrinos</div>
-        <div class="names">Por confirmar</div>
+        <div class="role" data-es="Mis Padrinos" data-en="My Godparents">Mis Padrinos</div>
+        <div class="names" data-es="Por confirmar" data-en="To be confirmed">Por confirmar</div>
       </div>
     </div>
   </section>
@@ -543,96 +661,169 @@ footer .fc a{color:var(--accent);text-decoration:none;}
   </section>
 
   <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
     </svg></div>
 
-  <!-- MESA DE REGALOS -->
-  <section class="rv" id="sgifts">
-    <div class="eyebrow">Con Cari&ntilde;o</div>
-    <h2 class="sec-title">Mesa de Regalos</h2>
-    <div class="gift-grid">
+  <!-- LLUVIA DE SOBRES -->
+  <section class="rv bgsec" id="sgifts">
+    <div class="env-rain" id="envRain" aria-hidden="true"></div>
+    <div class="env-stage">
+      <div class="eyebrow" data-es="Celebra Conmigo" data-en="Celebrate With Me">Celebra Conmigo</div>
+      <h2 class="sec-title" style="margin-bottom:6px" data-es="Lluvia de Sobres" data-en="Shower of Envelopes">Lluvia de Sobres</h2>
 
-      <div class="gift-card rv">
-        <div class="gift-logo-wrap">
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7D6B53" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      <button class="env-interactive" id="envGift" type="button" aria-label="Sobre" aria-expanded="false">
+        <div class="env-body" id="envGiftBody">
+          <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="envPaper" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0%" stop-color="#F7F1E6"/><stop offset="100%" stop-color="#EFE4D2"/>
+              </linearGradient>
+            </defs>
+            <rect x="18" y="52" width="224" height="132" rx="8" fill="url(#envPaper)" stroke="rgba(138,108,62,.5)" stroke-width="1.4"/>
+            <path d="M18 184 L130 110 L242 184" stroke="rgba(138,108,62,.3)" stroke-width="1" fill="none"/>
+          </svg>
+          <div class="env-flap-wrap" aria-hidden="true">
+            <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
+              <defs>
+                <linearGradient id="envFlap" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#EFE4D2"/><stop offset="100%" stop-color="#FBF6EC"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 0 L112 86 L224 0 Z" fill="url(#envFlap)" stroke="rgba(138,108,62,.5)" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <svg class="env-seal" viewBox="0 0 60 60" aria-hidden="true">
+            <circle cx="30" cy="30" r="28" fill="#C3A570"/>
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#8A6C3E" stroke-width="2" opacity=".6"/>
+            <circle cx="30" cy="30" r="21.5" fill="none" stroke="#FBF3E2" stroke-width="1.1" opacity=".9"/>
+            <text x="30" y="37" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="21" fill="#FBF3E2">IMS</text>
+          </svg>
         </div>
-        <div class="gift-body">
-          <div class="gb-name">Lluvia de Sobres</div>
-          <div class="gb-desc">Tu presencia es el mejor regalo. Si deseas obsequiarle algo a Isabella, habr&aacute; un buz&oacute;n de sobres en la recepci&oacute;n.</div>
+        <div class="env-open-content" aria-live="polite">
+          <svg class="env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="8" y="22" width="36" height="24" rx="5"/>
+            <path d="M8 30 Q26 38 44 30"/>
+            <rect x="18" y="8" width="16" height="16" rx="2"/>
+            <path d="M18 8 Q26 3 34 8"/>
+          </svg>
+          <p class="env-title" data-es="Tu presencia es mi mejor regalo" data-en="Your presence is my greatest gift">Tu presencia es mi mejor regalo</p>
+          <p class="env-desc" data-es="El d&iacute;a del evento habr&aacute; una urna donde podr&aacute;s depositar tu sobre con mucho cari&ntilde;o." data-en="On the day of the event there will be a box where you may leave your envelope with love.">El d&iacute;a del evento habr&aacute; una urna donde podr&aacute;s depositar tu sobre con mucho cari&ntilde;o.</p>
         </div>
-      </div>
-
+      </button>
+      <p class="env-tap-hint" id="envGiftHint" data-es="Toca para abrir" data-en="Tap to open">Toca para abrir</p>
     </div>
   </section>
 
   <div class="orn rv"><svg viewBox="0 0 130 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#7D6B53" stroke-width=".9" opacity=".55"/>
-      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-15 22 10)"/>
-      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(12 38 19)"/>
-      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-8 55 9)"/>
-      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(8 75 19)"/>
-      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(-12 92 9)"/>
-      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#7D6B53" opacity=".45" transform="rotate(6 108 19)"/>
-      <circle cx="65" cy="15" r="3" fill="#7D6B53" opacity=".6"/>
+      <path d="M8 15 Q35 5 65 15 T122 15" stroke="#A98C5F" stroke-width=".9" opacity=".6"/>
+      <ellipse cx="22" cy="10" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-15 22 10)"/>
+      <ellipse cx="38" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(12 38 19)"/>
+      <ellipse cx="55" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-8 55 9)"/>
+      <ellipse cx="75" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(8 75 19)"/>
+      <ellipse cx="92" cy="9"  rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(-12 92 9)"/>
+      <ellipse cx="108" cy="19" rx="5" ry="2.4" fill="#B99B6D" opacity=".5" transform="rotate(6 108 19)"/>
+      <circle cx="65" cy="15" r="3" fill="#A98C5F" opacity=".65"/>
     </svg></div>
 
   <!-- RSVP -->
-  <section class="rv" id="srsvp">
-    <div class="eyebrow">Confirma tu Asistencia</div>
-    <h2 class="sec-title">R.S.V.P.</h2>
+  <section class="rv bgsec" id="srsvp">
     <div class="rsvp-card">
-      <p class="rsvp-hola" id="rsvpHola"></p>
+      <svg class="rsvp-corner rsvp-corner--tl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="#B68F52" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="#B68F52" opacity=".5"/></svg>
+      <svg class="rsvp-corner rsvp-corner--tr" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="#B68F52" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="#B68F52" opacity=".5"/></svg>
+      <svg class="rsvp-corner rsvp-corner--bl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="#B68F52" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="#B68F52" opacity=".5"/></svg>
+      <svg class="rsvp-corner rsvp-corner--br" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="#B68F52" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="#B68F52" opacity=".5"/></svg>
 
-      <div class="pases-wrap" id="pasesWrap">
-        <div class="pases-card">
-          <div class="pases-title">Pases</div>
-          <div class="pases-sub">Hemos reservado</div>
-          <div class="pases-circles" id="pasesCircles"></div>
-          <div class="pases-honor">Asientos en tu honor</div>
+      <div class="rsvp-inner">
+        <svg class="rsvp-ornament" viewBox="0 0 320 56" fill="none" aria-hidden="true">
+          <g stroke="#B68F52" stroke-width=".9" opacity=".85" fill="none">
+            <path d="M18 28 Q50 10 82 28 Q106 42 130 28"/>
+            <path d="M190 28 Q214 42 238 28 Q270 10 302 28"/>
+            <circle cx="160" cy="28" r="5.5"/>
+            <circle cx="160" cy="28" r="2" fill="#B68F52" stroke="none"/>
+            <path d="M148 28 L154 28" opacity=".5"/>
+            <path d="M166 28 L172 28" opacity=".5"/>
+            <path d="M154 20 Q160 13 166 20" opacity=".55"/>
+            <path d="M154 36 Q160 43 166 36" opacity=".55"/>
+          </g>
+        </svg>
+
+        <div class="eyebrow" data-es="Confirma tu Asistencia" data-en="Confirm Your Attendance">Confirma tu Asistencia</div>
+        <h2 class="rsvp-title" data-es="Tu presencia lo <em>significa</em> todo" data-en="Your presence <em>means</em> everything">Tu presencia lo <em>significa</em> todo</h2>
+        <p class="rsvp-text" data-es="Por favor confirma tu asistencia antes del <strong>30 de noviembre de 2026</strong>. Nos hace mucha ilusi&oacute;n saber que estar&aacute;s ah&iacute;." data-en="Please confirm your attendance before <strong>November 30, 2026</strong>. It would mean so much to know you will be there.">Por favor confirma tu asistencia antes del <strong>30 de noviembre de 2026</strong>. Nos hace mucha ilusi&oacute;n saber que estar&aacute;s ah&iacute;.</p>
+
+        <p class="rsvp-name-display" id="rsvpHola" style="display:none"></p>
+
+        <div class="rsvp-divider">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+        </div>
+
+        <div class="pases-display" id="pasesWrap">
+          <div class="pases-label" data-es="Lugares reservados<br>en tu honor" data-en="Seats reserved<br>in your honor">Lugares reservados<br>en tu honor</div>
+          <div class="pases-num" id="pasesNum">1</div>
+        </div>
+
+        <div id="rsvpBandeja">
+          <div class="rsvp-toggle">
+            <button class="rsvp-toggle-btn" id="btnYes" type="button" data-es="&iexcl;S&iacute;, asistir&eacute;!" data-en="Yes, I&rsquo;ll be there!">&iexcl;S&iacute;, asistir&eacute;!</button>
+            <button class="rsvp-toggle-btn" id="btnNo" type="button" data-es="No podr&eacute; asistir" data-en="I can&rsquo;t make it">No podr&eacute; asistir</button>
+          </div>
+          <div class="rsvp-fields" id="rsvpFields"></div>
+          <button class="rsvp-btn" id="rsvpBtn" type="button"><span id="rsvpBtnText" data-es="Confirmar asistencia" data-en="Confirm attendance">Confirmar asistencia</span></button>
+        </div>
+
+        <div class="rsvp-gracias" id="rsvpGracias" style="display:none">
+          <svg class="rsvp-gracias-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
+          <p class="rsvp-gracias-title" id="rsvpGraciasTitle"></p>
+          <p class="rsvp-gracias-sub" id="rsvpGraciasSub"></p>
+          <button class="rsvp-editar-btn" id="rsvpEditarBtn" type="button" data-es="Modificar mi respuesta" data-en="Edit my response">Modificar mi respuesta</button>
+        </div>
+
+        <p class="rsvp-feedback" id="rsvpFeedback"></p>
+
+        <div class="rsvp-deadline">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
+          <span data-es="Fecha l&iacute;mite &middot; 30 Nov 2026" data-en="Deadline &middot; Nov 30, 2026">Fecha l&iacute;mite &middot; 30 Nov 2026</span>
         </div>
       </div>
-
-      <div id="rsvpBandeja">
-        <label>&iquest;Nos acompa&ntilde;ar&aacute;s?</label>
-        <div class="rsvp-toggle">
-          <button class="rsvp-toggle-btn" id="btnYes" type="button">S&iacute;, asistir&eacute;</button>
-          <button class="rsvp-toggle-btn" id="btnNo" type="button">No podr&eacute; asistir</button>
-        </div>
-        <div class="rsvp-fields" id="rsvpFields" style="display:none"></div>
-        <button class="btn-wa" id="rsvpBtn" type="button"><span id="rsvpBtnText">Confirmar asistencia</span></button>
-      </div>
-
-      <div class="rsvp-gracias" id="rsvpGracias" style="display:none">
-        <svg class="rsvp-gracias-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
-        <p class="rsvp-gracias-title" id="rsvpGraciasTitle"></p>
-        <p class="rsvp-gracias-sub" id="rsvpGraciasSub"></p>
-        <button class="rsvp-editar-btn" id="rsvpEditarBtn" type="button">Modificar mi respuesta</button>
-      </div>
-
-      <p class="rsvp-feedback" id="rsvpFeedback"></p>
-      <p class="rsvp-deadline">Fecha l&iacute;mite para confirmar:<br><strong>30 de noviembre de 2026</strong></p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="fn">Isabella</div>
-    <div class="fd">06 &middot; Febrero &middot; MMXXVII</div>
-    <div class="fc">Invitaci&oacute;n creada por <a href="https://instagram.com/elysium.invitaciones" target="_blank" rel="noopener">@elysium.invitaciones</a></div>
+    <div class="fd" data-es="06 &middot; Febrero &middot; MMXXVII" data-en="February &middot; 06 &middot; MMXXVII">06 &middot; Febrero &middot; MMXXVII</div>
+    <div class="fc" data-es="Invitaci&oacute;n creada por <a href='https://instagram.com/elysium.invitaciones' target='_blank' rel='noopener'>@elysium.invitaciones</a>" data-en="Invitation created by <a href='https://instagram.com/elysium.invitaciones' target='_blank' rel='noopener'>@elysium.invitaciones</a>">Invitaci&oacute;n creada por <a href="https://instagram.com/elysium.invitaciones" target="_blank" rel="noopener">@elysium.invitaciones</a></div>
   </footer>
 
 </div>
 
-<!-- MUSICA -->
-<button class="music-fab" id="musicFab" aria-label="Reproducir musica">
-  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+<!-- SELECTOR DE IDIOMA FLOTANTE -->
+<div class="lang-fab" id="langFab" style="display:none">
+  <button type="button" data-lang="es">ES</button>
+  <button type="button" data-lang="en">EN</button>
+</div>
+
+<!-- MUSICA (vinilo) -->
+<button class="vinyl-btn" id="musicFab" type="button" aria-label="Musica">
+  <div class="vinyl-tonearm"><div class="vinyl-tonearm-line"></div><div class="vinyl-tonearm-head"></div></div>
+  <div class="vinyl-spin">
+    <div class="vinyl-disc">
+      <div class="vinyl-sheen"></div>
+      <div class="vinyl-label-text">I<small>2027</small></div>
+      <div class="vinyl-hole"></div>
+    </div>
+  </div>
+  <div class="vinyl-icons">
+    <svg class="vinyl-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="vinyl-icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </div>
 </button>
 <audio id="bgAudio" loop preload="none" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-isabella-serrano/cancion.mp3"></audio>
 
@@ -641,17 +832,51 @@ window.scrollTo(0,0);
 history.scrollRestoration='manual';
 gsap.registerPlugin(ScrollTrigger);
 
+/* ══════════ IDIOMA ══════════ */
+var LANG='es';
+function applyLang(l){
+  LANG=(l==='en')?'en':'es';
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    var v=el.getAttribute('data-'+LANG);
+    if(v!==null)el.innerHTML=v;
+  });
+  document.querySelectorAll('#langFab button').forEach(function(b){
+    b.classList.toggle('on',b.getAttribute('data-lang')===LANG);
+  });
+  try{localStorage.setItem('isabella_lang',LANG);}catch(e){}
+  if(window.__rsvpRelang)window.__rsvpRelang();
+}
+document.querySelectorAll('#langFab button').forEach(function(b){
+  b.addEventListener('click',function(){applyLang(b.getAttribute('data-lang'));});
+});
+
+/* ══════════ SOBRE + MUSICA ══════════ */
 (function () {
+  var langScreen= document.getElementById('langScreen');
   var envScreen = document.getElementById('envelope-screen');
   var envImage  = document.getElementById('env-image');
   var envVideo  = document.getElementById('env-video');
   var envFlash  = document.getElementById('env-flash');
   var hint      = document.getElementById('env-hint');
+  var audio     = document.getElementById('bgAudio');
+  var fab       = document.getElementById('musicFab');
   var opened    = false;
 
-  gsap.timeline()
-    .to(envScreen, { opacity:1, duration:1.2, ease:'power2.out', delay:0.3 })
-    .to(hint,      { opacity:1, duration:0.9, ease:'power2.out' }, '-=0.5');
+  function showEnvelope(){
+    document.getElementById('langFab').style.display='flex';
+    gsap.timeline()
+      .to(envScreen, { opacity:1, duration:1.0, ease:'power2.out' })
+      .to(hint,      { opacity:1, duration:0.9, ease:'power2.out' }, '-=0.4');
+  }
+
+  document.querySelectorAll('#langScreen .lg-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      applyLang(b.getAttribute('data-lang'));
+      gsap.to(langScreen,{opacity:0,duration:.6,ease:'power2.out',
+        onComplete:function(){langScreen.style.display='none';showEnvelope();}});
+    });
+  });
 
   var flashStarted    = false;
   var invitationReady = false;
@@ -673,9 +898,9 @@ gsap.registerPlugin(ScrollTrigger);
   }
 
   envVideo.addEventListener('timeupdate', function () {
-    if (!flashStarted && envVideo.duration && envVideo.currentTime >= envVideo.duration - 2) {
+    if (!flashStarted && envVideo.duration && envVideo.currentTime >= envVideo.duration - 1.2) {
       flashStarted = true;
-      gsap.to(envFlash, { opacity:1, duration:1, ease:'power2.in', onComplete: revealInvitation });
+      gsap.to(envFlash, { opacity:1, duration:.9, ease:'power2.in', onComplete: revealInvitation });
     }
   });
 
@@ -687,6 +912,10 @@ gsap.registerPlugin(ScrollTrigger);
   function openEnvelope() {
     if (opened) return;
     opened = true;
+    /* La musica arranca con el mismo gesto que abre el sobre: los navegadores
+       solo permiten audio dentro del handler del toque, no despues del video. */
+    audio.volume = 0.25;
+    audio.play().then(function(){ fab.classList.add('is-playing'); }).catch(function(){});
     gsap.killTweensOf(envImage);
     gsap.to(hint, { opacity:0, duration:0.2 });
     var playPromise = envVideo.play();
@@ -706,16 +935,6 @@ gsap.registerPlugin(ScrollTrigger);
   }, { passive:false });
 }());
 
-function startLoader(){
-  var c = document.getElementById('ldName');
-  'Isabella'.split('').forEach(function(ch){var s=document.createElement('span');s.textContent=ch;c.appendChild(s);});
-  gsap.timeline({ onComplete: launchPage })
-    .to(c.querySelectorAll('span'),{opacity:1,y:0,duration:.7,stagger:.14,ease:'power3.out'})
-    .to('#ldTag',{opacity:1,duration:1,ease:'power2.out'},'-=.2')
-    .to('#loader',{opacity:0,duration:1.3,ease:'power2.inOut',delay:.5,
-        onComplete:function(){document.getElementById('loader').remove();}});
-}
-
 function launchPage(){
   gsap.timeline({defaults:{ease:'power2.out'}})
     .to('#hNm',{opacity:1,y:0,duration:1.8,ease:'power3.out'})
@@ -724,6 +943,7 @@ function launchPage(){
   initItinerary();
   initCrossfade();
   initDressCode();
+  initEnvRain();
 }
 
 function initScrollReveal(){
@@ -775,7 +995,85 @@ function initCrossfade(){
   });
 }
 
-/* COUNTDOWN */
+/* ══════════ LLUVIA DE SOBRES ══════════ */
+function initEnvRain(){
+  var sec=document.getElementById('sgifts'),rain=document.getElementById('envRain'),
+      btn=document.getElementById('envGift'),body=document.getElementById('envGiftBody'),
+      hint=document.getElementById('envGiftHint');
+  if(!sec||!rain||!btn)return;
+  var raining=true,landed=false,spawnCall=null,alive=0;
+  var MAX_ALIVE=18;
+
+  function makeEnvelope(){
+    if(alive>=MAX_ALIVE)return;
+    alive++;
+    var el=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    el.setAttribute('viewBox','0 0 34 24');
+    el.setAttribute('class','env-rain-item');
+    var w=16+Math.random()*16;
+    el.style.width=w+'px';el.style.height=(w*24/34)+'px';
+    el.style.left=(Math.random()*100)+'%';
+    el.innerHTML='<rect x="1" y="1" width="32" height="22" rx="2.5" fill="#F7F1E6" stroke="#8A6C3E" stroke-width="1.2"/>'+
+                 '<path d="M1 1 L17 13 L33 1" fill="none" stroke="#8A6C3E" stroke-width="1.2" stroke-linejoin="round"/>';
+    rain.appendChild(el);
+    var H=sec.offsetHeight+80,dur=5+Math.random()*4;
+    function kill(){if(el.parentNode){el.remove();alive--;}}
+    gsap.timeline({onComplete:kill})
+      .fromTo(el,{y:-46,x:0,rotation:(Math.random()-.5)*50,opacity:0},
+                 {y:H,x:(Math.random()-.5)*70,rotation:(Math.random()-.5)*160,duration:dur,ease:'none'},0)
+      .fromTo(el,{opacity:0},{opacity:.8,duration:dur*.18,ease:'power1.out'},0)
+      .to(el,{opacity:0,duration:dur*.25,ease:'power1.in'},dur*.75);
+  }
+
+  function scheduleSpawn(){
+    spawnCall=gsap.delayedCall(.52,function(){
+      if(!raining)return;
+      makeEnvelope();
+      scheduleSpawn();
+    });
+  }
+  function startRain(){
+    for(var i=0;i<7;i++)gsap.delayedCall(i*.26,makeEnvelope);
+    scheduleSpawn();
+  }
+  function stopRain(){
+    raining=false;
+    if(spawnCall)spawnCall.kill();
+    gsap.to(rain,{opacity:0,duration:1.1,ease:'power2.out',
+      onComplete:function(){rain.innerHTML='';alive=0;}});
+  }
+
+  function land(){
+    if(landed)return;landed=true;
+    stopRain();
+    gsap.fromTo(btn,
+      {opacity:0,y:-150,rotation:-12,scale:.82},
+      {opacity:1,y:0,rotation:0,scale:1,duration:1.15,ease:'back.out(1.5)',
+       onComplete:function(){
+         if(body)body.classList.add('landed');
+         if(hint)hint.classList.add('show');
+       }});
+  }
+
+  startRain();
+  /* 'center 55%' y no 'center center': el reveal .rv desplaza 28px las
+     secciones aun no visibles y el umbral exacto nunca se alcanza. */
+  ScrollTrigger.create({trigger:sec,start:'center 55%',once:true,onEnter:land,onEnterBack:land});
+  /* Red de seguridad: si el trigger no dispara, el sobre aterriza igual. */
+  gsap.delayedCall(14,land);
+
+  function toggle(e){
+    if(e)e.preventDefault();
+    if(!landed)return;
+    var open=btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    if(open&&body)body.classList.remove('landed');
+    ScrollTrigger.refresh();
+  }
+  btn.addEventListener('click',toggle);
+}
+
+/* ══════════ COUNTDOWN ══════════ */
 (function(){
   var target=new Date('2027-02-06T17:00:00-05:00').getTime();
   function tick(){
@@ -788,7 +1086,7 @@ function initCrossfade(){
   tick();setInterval(tick,1000);
 })();
 
-/* GOOGLE CALENDAR */
+/* ══════════ GOOGLE CALENDAR ══════════ */
 (function(){
   var t=encodeURIComponent('XV Anos de Isabella Serrano');
   var d=encodeURIComponent('Recepcion: The Country Club of Winter Haven, 4200 Country Club Rd, Winter Haven, FL 33881 - 5:00 PM');
@@ -797,12 +1095,48 @@ function initCrossfade(){
     'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+t+'&dates=20270206T220000Z/20270207T040000Z&details='+d+'&location='+l;
 })();
 
-/* RSVP - Panel de Invitados */
+/* ══════════ RSVP — Panel de Invitados ══════════ */
 (function(){
   var PANEL_API='https://panel-invitados.vercel.app/api/confirmar';
   var RSVP_URL='https://xv-isabella-serrano.vercel.app';
   var DEADLINE=new Date('2026-11-30T23:59:59-05:00').getTime();
   var frozen=Date.now()>DEADLINE;
+
+  var T={
+    es:{hola:function(n){return '¡Hola, '+n+'!';},
+        guest:function(i){return 'Nombre completo del invitado '+i;},
+        update:'Actualizar respuesta', confirm:'Confirmar asistencia', sending:'Enviando...',
+        gThanksT:'¡Gracias por confirmar!',
+        gThanks1:function(n){return 'Te esperamos, '+n+'.';},
+        gThanksN:function(n,l){return 'Confirmamos '+n+' lugares: '+l+'.';},
+        gNoT:'Gracias por avisarnos',
+        gNo:'Lamentamos que no puedas acompañarnos. Te vamos a extrañar.',
+        pick:'Por favor elige si podrás acompañarnos.',
+        need:'Escribe al menos un nombre.',
+        closed:'Tu respuesta ya quedó registrada y no se puede modificar. Si necesitas un cambio, contacta a la familia.',
+        frozen:'El periodo de confirmación cerró el 30 de noviembre de 2026.',
+        noMatch:'No pudimos identificar tu invitación. Abre el enlace personalizado que te enviaron; ese es el único que registra tu confirmación.',
+        deleted:'Esta invitación ya no está activa. Contacta a la familia para que te envíen un enlace nuevo.',
+        errSend:'Hubo un problema al enviar. Inténtalo de nuevo.',
+        offline:'Sin conexión. Verifica tu internet e inténtalo de nuevo.'},
+    en:{hola:function(n){return 'Hello, '+n+'!';},
+        guest:function(i){return 'Full name of guest '+i;},
+        update:'Update my response', confirm:'Confirm attendance', sending:'Sending...',
+        gThanksT:'Thank you for confirming!',
+        gThanks1:function(n){return 'We look forward to seeing you, '+n+'.';},
+        gThanksN:function(n,l){return 'We have confirmed '+n+' seats: '+l+'.';},
+        gNoT:'Thank you for letting us know',
+        gNo:'We are sorry you cannot join us. You will be missed.',
+        pick:'Please let us know if you can join us.',
+        need:'Please enter at least one name.',
+        closed:'Your response has been recorded and can no longer be changed. Please contact the family if you need a change.',
+        frozen:'The confirmation period closed on November 30, 2026.',
+        noMatch:'We could not identify your invitation. Please open the personal link you were sent; it is the only one that records your confirmation.',
+        deleted:'This invitation is no longer active. Please contact the family for a new link.',
+        errSend:'Something went wrong. Please try again.',
+        offline:'No connection. Check your internet and try again.'}
+  };
+  function t(){return T[LANG]||T.es;}
 
   var qs=new URLSearchParams(window.location.search);
   var urlPara=(qs.get('para')||'').trim();
@@ -821,24 +1155,19 @@ function initCrossfade(){
   var btn=document.getElementById('rsvpBtn');
   var btnText=document.getElementById('rsvpBtnText');
   var fb=document.getElementById('rsvpFeedback');
-  var estado=null,bloqueado=false;
+  var estado=null,bloqueado=false,sent=false,lastNames=[];
 
-  if(urlPara)holaEl.textContent='¡Hola, '+urlPara+'!';
+  if(urlPara){holaEl.textContent=t().hola(urlPara);holaEl.style.display='';}
 
   if(!isNaN(p)&&p>0){
-    var circles=document.getElementById('pasesCircles');
-    for(var i=1;i<=Math.min(pases,10);i++){
-      var c=document.createElement('div');
-      c.className='pases-circle active';
-      circles.appendChild(c);
-    }
-    document.getElementById('pasesWrap').style.display='block';
+    document.getElementById('pasesNum').textContent=pases;
+    document.getElementById('pasesWrap').style.display='flex';
   }
 
   for(var j=1;j<=pases;j++){
     var inp=document.createElement('input');
     inp.type='text';inp.id='rsvpName'+j;
-    inp.placeholder='Nombre completo del invitado '+j;
+    inp.placeholder=t().guest(j);
     inp.autocomplete='name';
     if(j===1&&urlPara)inp.value=urlPara;
     fieldsEl.appendChild(inp);
@@ -861,28 +1190,29 @@ function initCrossfade(){
   function cerrarPorBloqueo(){
     bloqueado=true;
     btn.disabled=true;btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
-    setFb('Tu respuesta ya quedó registrada y no se puede modificar. Si necesitas un cambio, contacta a la familia.','#8A5A2B');
+    setFb(t().closed,'#8A5A2B');
   }
 
   function select(e){
     estado=e;
     btnYes.classList.toggle('on',e==='confirmado');
     btnNo.classList.toggle('on',e==='declino');
-    fieldsEl.style.display=(e==='confirmado')?'block':'none';
+    fieldsEl.style.display=(e==='confirmado')?'flex':'none';
     if(e==='declino')setNombres([]);
   }
   btnYes.addEventListener('click',function(){if(!frozen&&!bloqueado)select('confirmado');});
   btnNo.addEventListener('click',function(){if(!frozen&&!bloqueado)select('declino');});
 
   function mostrarGracias(e,nombres){
+    sent=true;lastNames=nombres||[];
     if(e==='confirmado'){
-      gTitle.textContent='¡Gracias por confirmar!';
-      gSub.textContent=(nombres.length<=1)
-        ?('Te esperamos, '+(nombres[0]||urlPara||'')+'.')
-        :('Confirmamos '+nombres.length+' lugares: '+nombres.join(', ')+'.');
+      gTitle.textContent=t().gThanksT;
+      gSub.textContent=(lastNames.length<=1)
+        ? t().gThanks1(lastNames[0]||urlPara||'')
+        : t().gThanksN(lastNames.length,lastNames.join(', '));
     }else{
-      gTitle.textContent='Gracias por avisarnos';
-      gSub.textContent='Lamentamos que no puedas acompañarnos. Te vamos a extrañar.';
+      gTitle.textContent=t().gNoT;
+      gSub.textContent=t().gNo;
     }
     bandeja.style.display='none';
     gracias.style.display='';
@@ -890,10 +1220,24 @@ function initCrossfade(){
   }
   editarBtn.addEventListener('click',function(){
     if(frozen||bloqueado)return;
+    sent=false;
     gracias.style.display='none';
     bandeja.style.display='';
     setFb('','');
   });
+
+  /* Al cambiar de idioma se rehacen los textos generados por JS. */
+  window.__rsvpRelang=function(){
+    if(urlPara)holaEl.textContent=t().hola(urlPara);
+    for(var k=1;k<=pases;k++){
+      var el=document.getElementById('rsvpName'+k);
+      if(el)el.placeholder=t().guest(k);
+    }
+    btnText.textContent=(btnText.dataset.mode==='update')?t().update:t().confirm;
+    if(sent)mostrarGracias(estado,lastNames);
+    if(bloqueado)setFb(t().closed,'#8A5A2B');
+    else if(frozen)setFb(t().frozen,'#8A5A2B');
+  };
 
   btn.disabled=true;
   if(urlPara){
@@ -904,7 +1248,7 @@ function initCrossfade(){
         if(inv&&inv.estado){
           select(inv.estado);
           setNombres(inv.nombres_confirmados||[]);
-          btnText.textContent='Actualizar respuesta';
+          btnText.dataset.mode='update';btnText.textContent=t().update;
           mostrarGracias(inv.estado,inv.nombres_confirmados||[]);
         }
         if(inv&&inv.bloqueado)cerrarPorBloqueo();
@@ -916,17 +1260,15 @@ function initCrossfade(){
   }
   if(frozen){
     btnYes.disabled=true;btnNo.disabled=true;
-    setFb('El periodo de confirmación cerró el 30 de noviembre de 2026.','#8A5A2B');
+    setFb(t().frozen,'#8A5A2B');
   }
 
   btn.addEventListener('click',function(){
     if(frozen)return;
-    if(!estado){setFb('Por favor elige si podrás acompañarnos.','#8A5A2B');return;}
+    if(!estado){setFb(t().pick,'#8A5A2B');return;}
     var nombres=getNombres();
-    if(estado==='confirmado'&&nombres.length===0){
-      setFb('Escribe al menos un nombre.','#8A5A2B');return;
-    }
-    btn.disabled=true;btnText.textContent='Enviando...';
+    if(estado==='confirmado'&&nombres.length===0){setFb(t().need,'#8A5A2B');return;}
+    btn.disabled=true;btnText.textContent=t().sending;
     fetch(PANEL_API,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -942,30 +1284,24 @@ function initCrossfade(){
     .then(function(res){
       if(res.ok){
         setFb('','');
-        btnText.textContent='Actualizar respuesta';
+        btnText.dataset.mode='update';btnText.textContent=t().update;
         btn.disabled=false;
         mostrarGracias(estado,nombres);
         return;
       }
-      btn.disabled=false;btnText.textContent='Confirmar asistencia';
+      btn.disabled=false;btnText.textContent=t().confirm;
       var err=(res.data&&(res.data.error||res.data.code))||'';
       if(err==='respuestas_cerradas'){cerrarPorBloqueo();return;}
-      setFb(
-        err==='no_match'
-          ? 'No pudimos identificar tu invitación. Abre el enlace personalizado que te enviaron; ese es el único que registra tu confirmación.'
-          : err==='invitacion_borrada'
-            ? 'Esta invitación ya no está activa. Contacta a la familia para que te envíen un enlace nuevo.'
-            : 'Hubo un problema al enviar. Inténtalo de nuevo.',
-        '#8A5A2B');
+      setFb(err==='no_match'?t().noMatch:err==='invitacion_borrada'?t().deleted:t().errSend,'#8A5A2B');
     })
     .catch(function(){
-      btn.disabled=false;btnText.textContent='Confirmar asistencia';
-      setFb('Sin conexión. Verifica tu internet e inténtalo de nuevo.','#8A5A2B');
+      btn.disabled=false;btnText.textContent=t().confirm;
+      setFb(t().offline,'#8A5A2B');
     });
   });
 })();
 
-/* MUSICA */
+/* ══════════ MUSICA (vinilo) ══════════ */
 (function(){
   var fab=document.getElementById('musicFab'),audio=document.getElementById('bgAudio');
   audio.volume=0.25;
@@ -975,52 +1311,6 @@ function initCrossfade(){
   });
   audio.addEventListener('play',function(){fab.classList.add('is-playing');});
   audio.addEventListener('pause',function(){fab.classList.remove('is-playing');});
-})();
-</script>
-<script>
-/* ELYSIUM AUDIO v2 — el invitado entra y escucha la cancion.
-   - Primer gesto (sobre, idioma, boton, cualquier toque): la cancion arranca SI O SI.
-     Si el boton de musica de la plantilla la pausa en ese mismo toque, se reanuda.
-   - Despues del primer arranque ya no se fuerza nada: el boton de pausa funciona normal.
-   - Si el archivo de la cancion falla (404, host caido, HTML en vez de mp3) se usa una de respaldo. */
-(function(){
-  if(window.__elyAudio2) return; window.__elyAudio2=1;
-  var FALLBACK='https://boda-isaac-y-claudia.vercel.app/cancion.mp3';
-  var forced=false, gestured=false;
-  function A(){ return document.querySelector('audio'); }
-  function toFallback(a){
-    if(!a || a.getAttribute('data-ely-fb')) return;
-    a.setAttribute('data-ely-fb','1');
-    try{ a.src=FALLBACK; a.load(); if(gestured){ var p=a.play(); if(p&&p.catch) p.catch(function(){}); } }catch(e){}
-  }
-  function hook(a){
-    if(!a || a.__elyHook) return; a.__elyHook=1;
-    a.addEventListener('error',function(){ toFallback(a); });
-    var ss=a.querySelectorAll('source');
-    for(var i=0;i<ss.length;i++){ ss[i].addEventListener('error',function(){ toFallback(a); }); }
-    if(a.networkState===3 || (!ss.length && !a.getAttribute('src'))) toFallback(a);
-  }
-  function kick(a){
-    try{ a.muted=false; if(a.volume<0.2) a.volume=0.6; }catch(e){}
-    if(a.paused && a.currentTime===0 && a.readyState===0){ try{ a.preload='auto'; a.load(); }catch(e){} }
-    var p; try{ p=a.play(); }catch(e){ return; }
-    if(p && p.catch) p.catch(function(){});
-  }
-  function onGesture(){
-    var a=A(); if(!a) return;
-    hook(a); gestured=true;
-    if(forced) return;
-    if(a.paused) kick(a);
-    setTimeout(function(){
-      var b=A();
-      if(!forced && b && b.paused) kick(b);
-      forced=true;
-    },150);
-  }
-  hook(A());
-  ['pointerdown','touchend','click','keydown'].forEach(function(ev){
-    document.addEventListener(ev,onGesture,{capture:true,passive:true});
-  });
 })();
 </script>
 </body>
