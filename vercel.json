@@ -1,1 +1,1 @@
-{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}
+{"rewrites": [{"source": "/(.*)", "destination": "/index.html"}], "redirects": [{"source": "/album", "destination": "https://panel-invitados.vercel.app/subir/xv-isabella-serrano", "permanent": false}]}
